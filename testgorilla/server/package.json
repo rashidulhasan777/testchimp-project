@@ -1,11 +1,11 @@
 {
-  "name": "",
+  "name": "test-gorilla-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
   "license": "AGPL-version-3.0",
-  "private": false,
+  "private": true,
   "engines": {
     "node": ">= 14.0.0",
     "npm": ">= 6.0.0"
@@ -18,21 +18,24 @@
   "bugs": "",
   "keywords": [],
   "author": {
-    "name": "",
-    "email": "",
-    "url": ""
+    "name": "md-rashidul-hasan",
+    "email": "rashidulhasan777@gmail.com",
+    "url": "http://rashidulhasan.com"
   },
-  "contributors": [
-
-  ],
+  "contributors": [],
   "scripts": {
-    "dev": "",
+    "dev": "nodemon index.ts",
+    "format": "prettier --write \"./**/*.{js,ts}\"",
+    "lint": "eslint \"./**/*.{js,ts}\" --quiet",
+    "lint:fix": "eslint \"./**/*.{js,ts}\" --fix",
     "test": ""
   },
-  "dependencies": {
-
-  },
   "devDependencies": {
-
+    "@typescript-eslint/eslint-plugin": "^6.7.5",
+    "@typescript-eslint/parser": "^6.7.5",
+    "eslint": "^8.51.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "prettier": "^3.0.3"
   }
 }
