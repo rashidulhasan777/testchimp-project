@@ -1,8 +1,10 @@
 import cors from 'cors';
 import { config } from 'dotenv';
 import express from 'express';
+import mongoose from 'mongoose';
 import protectMiddleware from './middlewares/protect.middleware';
-import router from './routers/user.router';
+import apiRouter from './routers/api.router';
+import userRouter from './routers/user.router';
 
 config();
 
@@ -11,12 +13,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/users', router);
+app.use('/api', protectMiddleware, apiRouter);
+app.use('/users', userRouter);
 
-app.get('/', protectMiddleware, (req, res) => {
-  res.json({ message: 'Hello World' });
-});
-
-app.listen(3000, () => {
-  console.log('Server is listening on http://localhost:3000');
-});
+(async function bootstrap() {
+  await mongoose.connect('mongodb://127.0.0.1:27017/testgorilla');
+  console.log('Connected to DB');
+  app.listen(3000, () => {
+    console.log('Server is listening at http://127.0.0.1:3000');
+  });
+})();
