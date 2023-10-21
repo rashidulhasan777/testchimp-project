@@ -1,17 +1,17 @@
-import { Test } from '../models';
+import { Category } from '../models';
 
-const getAllTests = async () => {
-  const tests = await Test.find();
-  return tests;
+const getAllCategories = async () => {
+  const categories = await Category.find();
+  return categories;
 };
 
-const getTestById = async (id: string) => {
-  const test = await Test.findById(id);
-  return test;
+const getCategoryById = async (id: string) => {
+  const category = await Category.findById(id);
+  return category;
 };
 
-const createTest = async (
-  creator: string,
+const createCategory = async (
+  createdBy: string,
   title: string,
   shortDescription: string,
   description: string,
@@ -19,19 +19,19 @@ const createTest = async (
   skills: string[],
   relevantRoles: string[],
 ) => {
-  const test = await Test.create({
+  const category = await Category.create({
     title,
     shortDescription,
     description,
     level,
     skills,
     relevantRoles,
-    creator,
+    createdBy,
   });
-  return test;
+  return category;
 };
 
-const updateTestById = async (
+const updateCategoryById = async (
   id: string,
   title: string,
   shortDescription: string,
@@ -40,7 +40,7 @@ const updateTestById = async (
   skills: string[],
   relevantRoles: string[],
 ) => {
-  const test = await Test.findByIdAndUpdate(
+  const category = await Category.findByIdAndUpdate(
     { _id: id },
     {
       title,
@@ -52,12 +52,18 @@ const updateTestById = async (
     },
     { new: true },
   );
-  return test;
+  return category;
 };
 
-const deleteTestById = async (id: string) => {
-  const test = await Test.findByIdAndDelete(id);
-  return test;
+const deleteCategoryById = async (id: string) => {
+  const category = await Category.findByIdAndDelete(id);
+  return category;
 };
 
-export { createTest, deleteTestById, getAllTests, getTestById, updateTestById };
+export {
+  createCategory,
+  deleteCategoryById,
+  getAllCategories,
+  getCategoryById,
+  updateCategoryById,
+};

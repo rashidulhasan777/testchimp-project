@@ -1,12 +1,14 @@
 import { Question } from '../models';
 
 const createQuestion = async (
+  createdBy: string,
   title: string,
   options: string[],
   answer: string,
   duration: number,
 ) => {
   const question = await Question.create({
+    createdBy,
     title,
     options,
     answer,

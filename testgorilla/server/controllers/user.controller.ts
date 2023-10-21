@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
-import { createUser, findUserByEmail } from '../services/user.service';
+import { createUser, findUserByEmail } from '../models/user/query';
 import {
   comparePassword,
   generateHash,
   generateToken,
+  verifyToken,
 } from '../utilities/auth';
 
 const signupController = async (req: Request, res: Response) => {
@@ -16,22 +17,27 @@ const signupController = async (req: Request, res: Response) => {
   try {
     const hashedPassword = await generateHash(req.body.password);
     const user = await createUser(
-      req.body.name,
+      req.body.firstName,
+      req.body.lastName,
       req.body.email,
       hashedPassword,
     );
     const payload = {
       id: user.id,
-      name: user.name,
+      firstName: user.firstName,
+      lastName: user.lastName,
       email: user.email,
       exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7,
     };
     const token = generateToken(payload);
     res.status(201);
+    res.cookie('jwtToken', token, {
+      maxAge: 1000 * 60 * 60 * 24 * 7,
+    });
     res.json({ token });
-  } catch (error) {
+  } catch (error: any) {
     res.status(500);
-    res.json({ message: 'Internal server error' });
+    res.json({ error: error.message });
   }
 };
 
@@ -51,17 +57,44 @@ const loginController = async (req: Request, res: Response) => {
     }
     const payload = {
       id: user.id,
-      name: user.name,
+      firstName: user.firstName,
+      lastName: user.lastName,
       email: user.email,
       exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7,
     };
     const token = generateToken(payload);
     res.status(200);
+    res.cookie('jwtToken', token, {
+      maxAge: 1000 * 60 * 60 * 24 * 7,
+    });
     res.json({ token });
-  } catch (error) {
+  } catch (error: any) {
     res.status(500);
-    res.json({ message: 'Internal server error' });
+    res.json({ error: error.message });
   }
 };
 
-export { loginController, signupController };
+const getUserByTokenController = async (req: Request, res: Response) => {
+  try {
+    const token = req.cookies.jwtToken;
+    // console.log(token);
+    if (!token) {
+      res.status(404);
+      res.json({ message: 'User not found' });
+      return;
+    }
+    const user = verifyToken(token);
+    if (!user) {
+      res.status(404);
+      res.json({ message: 'User not found' });
+      return;
+    }
+    res.status(200);
+    res.json(user);
+  } catch (error: any) {
+    res.status(500);
+    res.json({ error: error.message });
+  }
+};
+
+export { loginController, signupController, getUserByTokenController };

@@ -1,0 +1,34 @@
+<header class="w-[100%] bg-white p-6 shadow-md">
+  <nav class="m-auto flex w-[90vw] text-[18px] font-[600] leading-[28px]">
+    <div class="basis-[20%]">
+      <a routerLink="/">
+        <img class="" src="../assets/logo-testgorilla.svg" alt="TestGorilla" />
+      </a>
+    </div>
+    <ul class="flex basis-[80%] items-center justify-between">
+      <div class="flex gap-8">
+        <li><a class="hover:text-[#44aa97]">Product Tour</a></li>
+        <li><a class="hover:text-[#44aa97]">Science</a></li>
+        <li><a class="hover:text-[#44aa97]">Test Library</a></li>
+        <li><a class="hover:text-[#44aa97]">Pricing</a></li>
+        <li><a class="hover:text-[#44aa97]">Learn</a></li>
+      </div>
+      <div class="flex gap-8" [ngClass]="authenticated ? 'hidden' : ''">
+        <li class="p-4">
+          <a routerLink="/login" class="text-[#44aa97] hover:text-black">Login</a>
+        </li>
+        <li class="rounded-md bg-[#44aa97] px-6 py-3 text-white hover:bg-[#31766A]">
+          <a routerLink="/signup">Try for free!</a>
+        </li>
+      </div>
+      <div class="flex gap-8" [ngClass]="authenticated ? '' : 'hidden'">
+        <li class="p-4">
+          <a routerLink="/dashboard" class="text-[#44aa97] hover:text-black">Dashboard</a>
+        </li>
+        <li class="rounded-md bg-[#44aa97] px-6 py-3 text-white hover:bg-[#31766A]">
+          <a (click)="logout()">Logout</a>
+        </li>
+      </div>
+    </ul>
+  </nav>
+</header>

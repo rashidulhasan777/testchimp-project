@@ -1,8 +1,10 @@
 {
     "title": "test question 1",
     "options": ["a", "b", "c", "e"],
-    "answer": "b",
-    "duration": 60
+    "answer": "a",
+    "duration": 60,
+    "level": "BEGINNER",
+    "category": "652e49fbe09a732609b0f59b"
 }
 
 {
