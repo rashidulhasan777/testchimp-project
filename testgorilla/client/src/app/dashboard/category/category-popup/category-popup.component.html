@@ -1,0 +1,19 @@
+<div class="flex justify-center items-center w-full h-full">
+  <div class="w-[90%] h-[90%]">
+    <div class="flex justify-between">
+      <button class="px-3.5 py-2.5 bg-[#ededed] rounded-md"><i class="fa-regular fa-eye"></i> Preview sample question</button>
+      <i mat-dialog-close class="fa-solid fa-xmark hover:cursor-pointer p-2"></i>
+    </div>
+    <div class="mt-8 flex gap-4">
+      <div class="flex-1">
+        <h2 class="font-openSans font-[600] text-[20px] leading-[32px] mb-4">{{ inputData?.title }}</h2>
+        <p class="font-openSans font-[400] text-[14px] leading-[20px]">{{ inputData?.shortDescription }}</p>
+      </div>
+      <div class="flex-1">
+        <h3 class="font-openSans font-[700] text-[18px] leading-[22px] mb-4 mt-4">Description</h3>
+        <p class="font-openSans font-[400] text-[14px] leading-[20px]">{{ inputData?.description }}</p>
+      </div>
+    </div>
+
+  </div>
+</div>

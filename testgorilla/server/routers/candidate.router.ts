@@ -19,20 +19,15 @@ router.get('/:id', getCandidateByIdController);
 router.post(
   '/',
   [
-    body('name').trim().escape().notEmpty().withMessage('Name is required'),
+    body('name').trim().notEmpty().withMessage('Name is required'),
     body('email')
       .trim()
-      .escape()
       .notEmpty()
       .withMessage('Email is required')
       .isEmail()
       .withMessage('Email is invalid'),
-    body('phone').trim().escape().notEmpty().withMessage('Phone is required'),
-    body('assignedBy')
-      .trim()
-      .escape()
-      .notEmpty()
-      .withMessage('Assigned By is required'),
+    body('phone').trim().notEmpty().withMessage('Phone is required'),
+    body('assignedBy').trim().notEmpty().withMessage('Assigned By is required'),
     validationMiddleware,
   ],
   createCandidateController,
@@ -41,20 +36,15 @@ router.post(
 router.put(
   '/:id',
   [
-    body('name').trim().escape().notEmpty().withMessage('Name is required'),
+    body('name').trim().notEmpty().withMessage('Name is required'),
     body('email')
       .trim()
-      .escape()
       .notEmpty()
       .withMessage('Email is required')
       .isEmail()
       .withMessage('Email is invalid'),
-    body('phone').trim().escape().notEmpty().withMessage('Phone is required'),
-    body('assignedBy')
-      .trim()
-      .escape()
-      .notEmpty()
-      .withMessage('Assigned By is required'),
+    body('phone').trim().notEmpty().withMessage('Phone is required'),
+    body('assignedBy').trim().notEmpty().withMessage('Assigned By is required'),
     validationMiddleware,
   ],
   updateCandidateByIdController,

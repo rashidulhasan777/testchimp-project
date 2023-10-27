@@ -1,0 +1,36 @@
+<!-- <div>
+  <div>
+    <div>
+      <h2>{{ category.title }}</h2>
+      <p>{{ category.shortDescription }}</p>
+    </div>
+    <div>
+      <button type="button">Preview</button>
+      <button type="button">Details</button>
+    </div>
+  </div>
+</div> -->
+
+<mat-card class="w-[16rem] h-[22rem] mb-4 flex flex-col justify-between text-[#252525]">
+  <div>
+    <mat-card-header class="">
+      <mat-card-title class="!font-openSans !font-[700] !text-[18px] !leading-[25px] h-16 !mb-3">{{ category.title }}</mat-card-title>
+
+      <!-- <mat-card-subtitle>{{ category.shortDescription }}</mat-card-subtitle> -->
+    </mat-card-header>
+    <mat-card-content class="!font-openSans !font-[400] !text-[14px] !leading-[20px]">
+      {{ category.shortDescription | slice:0:250 }}{{ category.shortDescription.length > 250 ? '...' : '' }}
+    </mat-card-content>
+  </div>
+  <div class="flex justify-between items-center mb-2">
+    <mat-card-actions class="flex gap-2">
+      <button matTooltip="Preview" class="px-3.5 py-2.5 bg-[#ededed] rounded-md"><i class="fa-regular fa-eye"></i></button>
+      <button (click)="showDetails()" class="px-3.5 py-2 border hover:bg-[#ededed] hover:border-black rounded-md">Details</button>
+    </mat-card-actions>
+    <div *ngIf="userRole === 'SUPER_ADMIN'" class="flex gap-2 mr-4">
+      <i matTooltip="Edit" (click)="editCategory(category._id)" class="fa-regular fa-pen-to-square hover:cursor-pointer"></i>
+      <i matTooltip="Delete" (click)="deleteCategory(category._id)" class="fa-regular fa-trash-can hover:cursor-pointer"></i>
+    </div>
+  </div>
+
+</mat-card>

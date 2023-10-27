@@ -10,14 +10,7 @@ const protectMiddleware = (
   res: Response,
   next: NextFunction,
 ) => {
-  const { authorization } = req.headers;
-  if (!authorization) {
-    res.status(401);
-    res.json({ message: 'You are not authorized' });
-    return;
-  }
-  const token =
-    authorization.split(' ').length > 1 ? authorization.split(' ')[1] : null;
+  const token = req.cookies.jwtToken;
   if (!token) {
     res.status(401);
     res.json({ message: 'You are not authorized' });

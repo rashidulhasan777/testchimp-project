@@ -1,0 +1,133 @@
+<div class="h-[95%] bg-[#F5F6F6]">
+  <div class="relative m-auto w-[90vw] px-[2rem]">
+    <div>
+      <h2 class="py-4">Create new assessment</h2>
+    </div>
+
+    <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+      <mat-stepper [linear]="isLinear" #stepper class="!bg-inherit">
+        <mat-step [stepControl]="assessmentNameForm" >
+          <div class="float-right mb-4">
+            <button mat-raised-button color="primary" matStepperNext>
+              Next
+            </button>
+          </div>
+          <div formGroupName="assessmentName">
+            <ng-template class="mb-4" matStepLabel>Name assessment</ng-template>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Name your assessment</mat-label>
+              <input matInput formControlName="title" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Job role</mat-label>
+              <input matInput formControlName="jobRole" />
+            </mat-form-field>
+
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="selectTestForm" label="Select tests">
+          <div class="flex justify-between mb-8">
+            <button mat-raised-button color="primary" matStepperPrevious>
+              Back
+            </button>
+            <button mat-raised-button color="primary" matStepperNext>
+              Next
+            </button>
+          </div>
+          <div
+            cdkDropList
+            cdkDropListOrientation="horizontal"
+            class="flex w-full gap-2"
+            (cdkDropListDropped)="drop($event)">
+            <div
+              class="flex flex-grow justify-between rounded-md border-2 px-6 py-3"
+              *ngFor="let timePeriod of timePeriods"
+              cdkDrag>
+              <span>{{ timePeriod }}</span>
+              <span>
+                <i
+                  (click)="deleteFromList(timePeriod)"
+                  class="fa-solid fa-xmark hover:cursor-pointer"></i>
+              </span>
+            </div>
+          </div>
+
+
+          <div>tests</div>
+
+          <!-- <div formGroupName="contact">
+            <mat-form-field appearance="fill">
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                formControlName="email"
+                placeholder="Email"
+                required />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Phone</mat-label>
+              <input
+                matInput
+                formControlName="phone"
+                placeholder="Phone"
+                required />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Fax</mat-label>
+              <input
+                matInput
+                formControlName="fax"
+                placeholder="Fax"
+                required />
+            </mat-form-field>
+            <div>
+              <button mat-raised-button color="primary" matStepperPrevious>
+                Back
+              </button>
+              |
+              <button mat-raised-button color="primary" matStepperNext>
+                Next
+              </button>
+            </div>
+          </div> -->
+        </mat-step>
+        <mat-step [stepControl]="addressform" label="Review & configure">
+          <div class="flex justify-between mb-8">
+            <button mat-raised-button color="primary" matStepperPrevious>
+              Back
+            </button>
+            <button mat-raised-button color="primary">Submit</button>
+          </div>
+          <div formGroupName="address">
+            <mat-form-field appearance="fill">
+              <mat-label>Street</mat-label>
+              <input
+                matInput
+                formControlName="street"
+                placeholder="street"
+                required />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>City</mat-label>
+              <input
+                matInput
+                formControlName="city"
+                placeholder="City"
+                required />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>PIN</mat-label>
+              <input
+                matInput
+                formControlName="pin"
+                placeholder="Pin"
+                required />
+            </mat-form-field>
+
+          </div>
+        </mat-step>
+      </mat-stepper>
+    </form>
+  </div>
+</div>

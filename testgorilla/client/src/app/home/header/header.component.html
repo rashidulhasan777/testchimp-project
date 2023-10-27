@@ -1,4 +1,4 @@
-<header class="w-[100%] bg-white p-6 shadow-md">
+<header class="w-[100%] bg-white p-4 shadow-md">
   <nav class="m-auto flex w-[90vw] text-[18px] font-[600] leading-[28px]">
     <div class="basis-[20%]">
       <a routerLink="/">
@@ -14,7 +14,7 @@
         <li><a class="hover:text-[#44aa97]">Learn</a></li>
       </div>
       <div class="flex gap-8" [ngClass]="authenticated ? 'hidden' : ''">
-        <li class="p-4">
+        <li class="p-3">
           <a routerLink="/login" class="text-[#44aa97] hover:text-black">Login</a>
         </li>
         <li class="rounded-md bg-[#44aa97] px-6 py-3 text-white hover:bg-[#31766A]">
@@ -22,11 +22,11 @@
         </li>
       </div>
       <div class="flex gap-8" [ngClass]="authenticated ? '' : 'hidden'">
-        <li class="p-4">
+        <li class="p-3">
           <a routerLink="/dashboard" class="text-[#44aa97] hover:text-black">Dashboard</a>
         </li>
         <li class="rounded-md bg-[#44aa97] px-6 py-3 text-white hover:bg-[#31766A]">
-          <a (click)="logout()">Logout</a>
+          <button (click)="logout()">Logout</button>
         </li>
       </div>
     </ul>

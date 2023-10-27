@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import Question from './model';
 
 const createQuestion = async (
@@ -22,8 +23,23 @@ const createQuestion = async (
 };
 
 const getQuestionById = async (id: string) => {
-  const question = await Question.findById(id);
-  return question;
+  // const question = await Question.findById(id);
+  const question = await Question.aggregate([
+    {
+      $match: {
+        _id: new mongoose.Types.ObjectId(id),
+      },
+    },
+    {
+      $lookup: {
+        from: 'categories',
+        localField: 'category',
+        foreignField: '_id',
+        as: 'category',
+      },
+    },
+  ]);
+  return question[0] || null;
 };
 
 const updateQuestionById = async (
@@ -60,7 +76,19 @@ const deleteQuestionById = async (id: string) => {
 };
 
 const getAllQuestions = async () => {
-  const questions = await Question.find();
+  // const questions = await Question.find();
+  const questions = await Question.aggregate([
+    {
+      $lookup: {
+        from: 'categories',
+        localField: 'category',
+        foreignField: '_id',
+        as: 'category',
+      },
+    },
+  ]);
+  // write a query to get data from question with category
+  // const questions = await Question.find().populate('category');
   return questions;
 };
 

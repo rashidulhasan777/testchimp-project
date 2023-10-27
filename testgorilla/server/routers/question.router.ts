@@ -19,21 +19,17 @@ router.get('/:id', getQuestionByIdController);
 router.post(
   '/',
   [
-    body('title').trim().escape().notEmpty().withMessage('Title is required'),
+    body('title').trim().notEmpty().withMessage('Title is required'),
     body('options')
       .trim()
-      .escape()
       .notEmpty()
-      .withMessage('Options are required'),
-    body('answer').trim().escape().notEmpty().withMessage('Answer is required'),
-    body('duration')
-      .trim()
-      .escape()
-      .notEmpty()
-      .withMessage('Duration is required'),
+      .withMessage('Options are required')
+      .isArray()
+      .withMessage('Options must be an array'),
+    body('answer').trim().notEmpty().withMessage('Answer is required'),
+    body('duration').trim().notEmpty().withMessage('Duration is required'),
     body('level')
       .trim()
-      .escape()
       .notEmpty()
       .withMessage('Level is required')
       .isIn(['BEGINNER', 'INTERMEDIATE', 'ADVANCED'])
@@ -46,21 +42,12 @@ router.post(
 router.put(
   '/:id',
   [
-    body('title').trim().escape().notEmpty().withMessage('Title is required'),
-    body('options')
-      .trim()
-      .escape()
-      .notEmpty()
-      .withMessage('Options are required'),
-    body('answer').trim().escape().notEmpty().withMessage('Answer is required'),
-    body('duration')
-      .trim()
-      .escape()
-      .notEmpty()
-      .withMessage('Duration is required'),
+    body('title').trim().notEmpty().withMessage('Title is required'),
+    body('options').trim().notEmpty().withMessage('Options are required'),
+    body('answer').trim().notEmpty().withMessage('Answer is required'),
+    body('duration').trim().notEmpty().withMessage('Duration is required'),
     body('level')
       .trim()
-      .escape()
       .notEmpty()
       .withMessage('Level is required')
       .isIn(['BEGINNER', 'INTERMEDIATE', 'ADVANCED'])

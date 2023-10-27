@@ -14,16 +14,11 @@ router.get('/', getUserByTokenController);
 router.post(
   '/signup',
   [
-    body('firstName')
-      .trim()
-      .escape()
-      .notEmpty()
-      .withMessage('Name is required'),
-    body('lastName').trim().escape().notEmpty().withMessage('Name is required'),
-    body('email').trim().escape().isEmail().withMessage('Email must be valid'),
+    body('firstName').trim().notEmpty().withMessage('Name is required'),
+    body('lastName').trim().notEmpty().withMessage('Name is required'),
+    body('email').trim().isEmail().withMessage('Email must be valid'),
     body('password')
       .trim()
-      .escape()
       .isLength({ min: 8, max: 20 })
       .withMessage('Password must be between 8 and 20 characters'),
     validationMiddleware,
@@ -34,10 +29,9 @@ router.post(
 router.post(
   '/login',
   [
-    body('email').trim().escape().isEmail().withMessage('Email must be valid'),
+    body('email').trim().isEmail().withMessage('Email must be valid'),
     body('password')
       .trim()
-      .escape()
       .notEmpty()
       .withMessage('You must supply a password'),
     validationMiddleware,

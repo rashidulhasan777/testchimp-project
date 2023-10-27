@@ -1,0 +1,65 @@
+<div class="bg-[#F5F6F6] h-[95%]">
+  <div class="w-[90vw] px-[2rem] m-auto relative">
+
+    <div class="flex justify-between pt-8 mb-8">
+      <h2 class="font-[600] font-openSans text-[20px] leading-[28px]">My assessments</h2>
+      <button routerLink="/dashboard/assessments/new" type="button" class="text-white bg-[#44aa97] hover:bg-[#31766A] px-6 rounded-md font-[400] text-[14px] leading-[18px]">Create new assessment</button>
+    </div>
+    <div class="flex justify-between mb-12">
+      <input class="rounded-md" type="text" name="search_assessment" id="search_assessment" placeholder="Search assessment">
+      <select class="rounded-md px-16" name="assessment_type" id="assessment_type">
+        <option value="active" selected>Active</option>
+        <option value="archived">Archived</option>
+      </select>
+    </div>
+
+    <div [ngClass]="assessments.length > 0 ? 'hidden' : ''" class="text-center">
+      <h3 class="font-[600] text-[18px] text-gray-500">No assessment to show. Create new assessment to start hiring!</h3>
+    </div>
+    <!-- table -->
+    <!-- <div class="px-4 sm:px-6 lg:px-8">
+      <div class="mt-8 flow-root"> -->
+        <div [ngClass]="assessments.length > 0 ? '' : 'hidden'" class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+            <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+              <table class="min-w-full divide-y divide-gray-300">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Candidates</th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Progress</th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Last Activity</th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Date Created</th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Deadline</th>
+                    <!-- <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Actions</th> -->
+
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 bg-white">
+                  <tr [routerLink]="['/dashboard/assessments', assessment._id]" *ngFor="let assessment of assessments" class="hover:bg-[#F0D6BB] hover:cursor-pointer">
+                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ assessment.title }}</td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ assessment.candidates.length }}</td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ assessment.updatedAt | relativeTime }}</td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ assessment.createdAt | relativeTime }}</td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ assessment.deadline ? (assessment.deadline | date) : '-' }}</td>
+                    <!-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 flex justify-center">
+                      <button>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                      </button>
+                    </td> -->
+
+                  </tr>
+
+
+                  <!-- More people... -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      <!-- </div>
+    </div> -->
+
+  </div>
+</div>

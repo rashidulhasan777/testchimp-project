@@ -19,10 +19,9 @@ router.get('/:id', getAssessmentByIdController);
 router.post(
   '/',
   [
-    body('title').trim().escape().notEmpty().withMessage('Title is required'),
+    body('title').trim().notEmpty().withMessage('Title is required'),
     body('description')
       .trim()
-      .escape()
       .notEmpty()
       .withMessage('Description is required'),
     validationMiddleware,
@@ -33,10 +32,9 @@ router.post(
 router.put(
   '/:id',
   [
-    body('title').trim().escape().notEmpty().withMessage('Title is required'),
+    body('title').trim().notEmpty().withMessage('Title is required'),
     body('description')
       .trim()
-      .escape()
       .notEmpty()
       .withMessage('Description is required'),
     validationMiddleware,

@@ -10,7 +10,7 @@ const QuestionSchema = new Schema({
     enum: ['BEGINNER', 'INTERMEDIATE', 'ADVANCED'],
     required: true,
   },
-  category: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
+  category: { type: Schema.Types.ObjectId, ref: 'Category' },
   createdBy: { type: Schema.Types.ObjectId, ref: 'User' },
   createdAt: { type: Date, required: true, default: Date.now },
 });

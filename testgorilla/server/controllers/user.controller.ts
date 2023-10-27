@@ -27,6 +27,7 @@ const signupController = async (req: Request, res: Response) => {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
+      role: user.role,
       exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7,
     };
     const token = generateToken(payload);
@@ -60,6 +61,7 @@ const loginController = async (req: Request, res: Response) => {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
+      role: user.role,
       exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7,
     };
     const token = generateToken(payload);

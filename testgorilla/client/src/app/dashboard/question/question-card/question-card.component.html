@@ -1,0 +1,35 @@
+<div class="flex justify-center items-center w-full h-full">
+  <div *ngIf="question" class="flex w-[75vw] h-[75vh] bg-white rounded-md font-openSans font-[400] text-[16px] leading-[23px] text-justify">
+    <div class="w-[50%]">
+      <div class="p-12 " [innerHTML]="question.title">
+        <!-- {{ question.title }} -->
+      </div>
+    </div>
+    <div class="w-[50%]">
+      <div class="p-12">
+        <p class="!mb-4">SELECT ONLY ONE</p>
+        <fieldset class="">
+          <legend class="sr-only">Question</legend>
+          <div class="space-y-4">
+            <!-- Active: "border-indigo-600 ring-2 ring-indigo-600", Not Active: "border-gray-300" -->
+            <label (click)="setActiveOption(option)" [ngClass]="activeOption===option?'border-[#44aa97]  ring-2 ring-[#44aa97]':'border-gray-300'" *ngFor="let option of question.options" class="relative block cursor-pointer rounded-lg border bg-white px-6 py-4 shadow-sm focus:outline-none sm:flex sm:justify-between">
+              <input type="radio" name="server-size" value="Hobby" class="sr-only">
+              <span class="flex items-center">
+                  <span [innerHTML]="option" id="server-size-0-label" class="font-medium text-gray-900"></span>
+              </span>
+
+              <!--
+                Active: "border", Not Active: "border-2"
+                Checked: "border-indigo-600", Not Checked: "border-transparent"
+              -->
+              <span [ngClass]="activeOption===option?'border':'border-2'" class="pointer-events-none absolute -inset-px rounded-lg" aria-hidden="true"></span>
+            </label>
+          </div>
+        </fieldset>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="h-[95%] bg-[#F5F6F6]">
+  <div class="relative m-auto w-[90vw] px-[2rem]">
+    <div>
+      <h2 class="py-4">{{ updateMode ? 'Update question' : 'Create new question' }}</h2>
+    </div>
+
+    <form (submit)="onSubmit()" [formGroup]="questionForm">
+      <div class="flex justify-between">
+        <mat-form-field appearance="outline" class="!w-auto">
+          <mat-label>Category</mat-label>
+          <mat-select required formControlName="category">
+            <mat-option *ngFor="let category of categories" [value]="category._id">{{ category.title }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="!w-auto">
+          <mat-label>Level</mat-label>
+          <mat-select required formControlName="level">
+            <mat-option value="BEGINNER">BEGINNER</mat-option>
+            <mat-option value="INTERMEDIATE">INTERMEDIATE</mat-option>
+            <mat-option value="ADVANCED">ADVANCED</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="!w-auto">
+          <mat-label>Duration</mat-label>
+          <mat-select required formControlName="duration">
+            <mat-option *ngFor="let number of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" [value]="number">{{ number | plural }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Question</mat-label>
+        <input matInput required formControlName="title">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Option 1</mat-label>
+        <input matInput required formControlName="option1">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Option 2</mat-label>
+        <input matInput required formControlName="option2">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Option 3</mat-label>
+        <input matInput formControlName="option3">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Option 4</mat-label>
+        <input matInput formControlName="option4">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Correct answer</mat-label>
+        <input matInput required formControlName="answer">
+        <mat-hint>Copy paste the correct option</mat-hint>
+      </mat-form-field>
+
+      <div class="text-center">
+        <button type="submit" class="rounded-md bg-[#44aa97]  px-3.5 py-3.5 text-sm font-semibold text-white shadow-sm hover:bg-[#31766A]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#44aa97] ">Save question</button>
+      </div>
+
+
+    </form>
+
+  </div>
+</div>

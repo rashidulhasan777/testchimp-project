@@ -17,17 +17,6 @@ export class HeaderComponent implements OnInit {
     } else {
       this.authenticated = false;
     }
-    // this.userService.getUser().subscribe(
-    //   (res) => {
-    //     if (res.id) {
-    //       this.authenticated = true;
-    //     }
-    //   },
-    //   (err) => {
-    //     console.log(err);
-    //     this.authenticated = false;
-    //   },
-    // );
   }
   logout() {
     this.authenticated = false;

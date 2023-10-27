@@ -20,27 +20,23 @@ router.get('/:id', getCategoryByIdController);
 router.post(
   '/',
   [
-    body('title').trim().escape().notEmpty().withMessage('Title is required'),
+    body('title').trim().notEmpty().withMessage('Title is required'),
     body('shortDescription')
       .trim()
-      .escape()
       .notEmpty()
       .withMessage('Short Description is required'),
     body('description')
       .trim()
-      .escape()
       .notEmpty()
       .withMessage('Description is required'),
     body('skills')
       .trim()
-      .escape()
       .notEmpty()
       .withMessage('Skills are required')
       .isArray()
       .withMessage('Skills must be an array'),
     body('relevantRoles')
       .trim()
-      .escape()
       .notEmpty()
       .withMessage('Relevant Roles are required')
       .isArray()
@@ -52,27 +48,23 @@ router.post(
 router.put(
   '/:id',
   [
-    body('title').trim().escape().notEmpty().withMessage('Title is required'),
+    body('title').trim().notEmpty().withMessage('Title is required'),
     body('shortDescription')
       .trim()
-      .escape()
       .notEmpty()
       .withMessage('Short Description is required'),
     body('description')
       .trim()
-      .escape()
       .notEmpty()
       .withMessage('Description is required'),
     body('skills')
       .trim()
-      .escape()
       .notEmpty()
       .withMessage('Skills are required')
       .isArray()
       .withMessage('Skills must be an array'),
     body('relevantRoles')
       .trim()
-      .escape()
       .notEmpty()
       .withMessage('Relevant Roles are required')
       .isArray()
