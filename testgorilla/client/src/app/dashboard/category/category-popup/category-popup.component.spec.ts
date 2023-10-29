@@ -8,7 +8,7 @@ describe('CategoryPopupComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CategoryPopupComponent]
+      declarations: [CategoryPopupComponent],
     });
     fixture = TestBed.createComponent(CategoryPopupComponent);
     component = fixture.componentInstance;

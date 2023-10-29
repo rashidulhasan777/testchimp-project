@@ -26,38 +26,45 @@
             <mat-option *ngFor="let number of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" [value]="number">{{ number | plural }}</mat-option>
           </mat-select>
         </mat-form-field> -->
-
       </div>
       <mat-form-field appearance="outline">
         <mat-label>Title</mat-label>
-        <input matInput required formControlName="title">
+        <input matInput required formControlName="title" />
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Short description</mat-label>
-        <input matInput required formControlName="shortDescription">
+        <input matInput required formControlName="shortDescription" />
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Description</mat-label>
-        <input matInput required formControlName="description">
+        <input matInput required formControlName="description" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Level</mat-label>
+        <input matInput required formControlName="level" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Type</mat-label>
+        <input matInput required formControlName="type" />
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Skills</mat-label>
-        <input matInput formControlName="skills">
+        <input matInput formControlName="skills" />
         <mat-hint>Separate skills with a comma</mat-hint>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Relevant roles</mat-label>
-        <input matInput formControlName="relevantRoles">
-        <mat-hint>Separate roles with a comma</mat-hint>
+        <input matInput formControlName="relevantRoles" />
+        <!-- <mat-hint>Separate roles with a comma</mat-hint> -->
       </mat-form-field>
 
-
       <div class="text-center">
-        <button type="submit" class="rounded-md bg-[#44aa97]  px-3.5 py-3.5 text-sm font-semibold text-white shadow-sm hover:bg-[#31766A]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#44aa97] ">Save test</button>
+        <button
+          type="submit"
+          class="rounded-md bg-[#44aa97] px-3.5 py-3.5 text-sm font-semibold text-white shadow-sm hover:bg-[#31766A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#44aa97]">
+          Save test
+        </button>
       </div>
-
-
     </form>
-
   </div>
 </div>

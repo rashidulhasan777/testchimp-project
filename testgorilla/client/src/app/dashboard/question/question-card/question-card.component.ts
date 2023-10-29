@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Question } from 'src/app/interfaces/question';
-import { QuestionService } from 'src/app/services/question.service';
+import { ConfirmPopupComponent } from '../../confirm-popup/confirm-popup.component';
 
 @Component({
   selector: 'app-question-card',
@@ -8,24 +10,45 @@ import { QuestionService } from 'src/app/services/question.service';
   styles: [],
 })
 export class QuestionCardComponent implements OnInit {
-  @Input() questionId!: string;
-  question!: Question;
-  activeOption: string = '';
+  @Input() question!: Question;
+  @Input() userRole: string | undefined;
+  @Output() deleteQuestionEvent = new EventEmitter<string>();
+  @Output() addQuestionEvent = new EventEmitter<string>();
+  @Input() parent!: string;
 
-  constructor(private questionService: QuestionService) {}
+  constructor(
+    private router: Router,
+    private dialog: MatDialog,
+  ) {}
 
-  ngOnInit(): void {
-    this.questionService.getQuestionById(this.questionId).subscribe(
-      (question) => {
-        // console.log(question);
-        this.question = question;
-      },
-      (err) => {
-        console.log(err);
-      },
-    );
+  ngOnInit(): void {}
+
+  editQuestion(id: string) {
+    // console.log(id);
+    if (this.userRole === 'SUPER_ADMIN') {
+      this.router.navigate(['/dashboard/questions/edit', id]);
+    }
   }
-  setActiveOption(option: string) {
-    this.activeOption = option;
+
+  deleteQuestion(id: string) {
+    if (this.userRole === 'SUPER_ADMIN') {
+      const dialogRef = this.dialog.open(ConfirmPopupComponent, {
+        width: '500px',
+        height: '150px',
+        data: {
+          title: 'Delete Question',
+          message: 'Are you sure you want to delete this question?',
+        },
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result === 'yes') {
+          // console.log('Yes clicked');
+          this.deleteQuestionEvent.emit(id);
+        }
+      });
+    }
+  }
+  onClickAddButton(id: string) {
+    this.addQuestionEvent.emit(id);
   }
 }

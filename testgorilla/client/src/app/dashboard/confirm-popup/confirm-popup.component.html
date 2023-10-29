@@ -1,11 +1,21 @@
-<div class="flex justify-center items-center w-full h-full">
-  <div class="w-[90%] h-[90%] flex gap-2 flex-col justify-between">
+<div class="flex h-full w-full items-center justify-center">
+  <div class="flex h-[90%] w-[90%] flex-col justify-between gap-2">
     <div class="mt-4">
-      <h2 class="font-openSans font-[600] text-[20px] leading-[32px]">{{ inputData.message }}</h2>
+      <h2 class="font-openSans text-[20px] font-[600] leading-[32px]">
+        {{ inputData.message }}
+      </h2>
     </div>
-    <div class="flex justify-end gap-4 mb-4">
-      <button mat-dialog-close class="px-3.5 py-2 rounded-md bg-[#ededed] hover:bg-[#44aa97] border border-black">No</button>
-      <button mat-dialog-close="yes" class="px-3.5 py-2 rounded-md bg-[#ededed] hover:bg-[#44aa97] border border-black">Yes</button>
+    <div class="mb-4 flex justify-end gap-4">
+      <button
+        mat-dialog-close
+        class="rounded-md border border-black bg-[#ededed] px-3.5 py-2 hover:bg-[#44aa97]">
+        No
+      </button>
+      <button
+        mat-dialog-close="yes"
+        class="rounded-md border border-black bg-[#ededed] px-3.5 py-2 hover:bg-[#44aa97]">
+        Yes
+      </button>
     </div>
   </div>
 </div>

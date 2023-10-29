@@ -31,24 +31,18 @@ const getCategoryByIdController = async (req: Request, res: Response) => {
 
 const createCategoryController = async (req: AuthRequest, res: Response) => {
   try {
-    const {
-      title,
-      shortDescription,
-      description,
-      level,
-      skills,
-      relevantRoles,
-    } = req.body;
+    // const {
+    //   title,
+    //   shortDescription,
+    //   description,
+    //   level,
+    //   type,
+    //   skills,
+    //   relevantRoles,
+    // } = req.body;
     const { id } = req.user as { id: string }; // This is the user id / creator id
-    const category = await createCategory(
-      id,
-      title,
-      shortDescription,
-      description,
-      level,
-      skills,
-      relevantRoles,
-    );
+    const categoryObject = { createdBy: id, ...req.body };
+    const category = await createCategory(categoryObject);
     res.status(201);
     res.json(category);
   } catch (error: any) {
@@ -59,17 +53,18 @@ const createCategoryController = async (req: AuthRequest, res: Response) => {
 
 const updateCategoryByIdController = async (req: Request, res: Response) => {
   try {
-    const id = req.params.id;
-    const { title, shortDescription, description, skills, relevantRoles } =
-      req.body;
-    const category = await updateCategoryById(
-      id,
-      title,
-      shortDescription,
-      description,
-      skills,
-      relevantRoles,
-    );
+    const categoryId = req.params.id; // This is the category id
+    // const {
+    //   title,
+    //   shortDescription,
+    //   description,
+    //   level,
+    //   type,
+    //   skills,
+    //   relevantRoles,
+    // } = req.body;
+    const categoryObject = { ...req.body };
+    const category = await updateCategoryById(categoryId, categoryObject);
     res.json(category);
   } catch (error: any) {
     res.status(500);

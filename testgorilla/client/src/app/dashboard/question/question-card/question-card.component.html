@@ -1,34 +1,42 @@
-<div class="flex justify-center items-center w-full h-full">
-  <div *ngIf="question" class="flex w-[75vw] h-[75vh] bg-white rounded-md font-openSans font-[400] text-[16px] leading-[23px] text-justify">
-    <div class="w-[50%]">
-      <div class="p-12 " [innerHTML]="question.title">
-        <!-- {{ question.title }} -->
+<div class="mb-6 rounded-md bg-white px-4 py-5 shadow-md sm:px-6">
+  <div class="flex space-x-3">
+    <div class="min-w-0 flex-1">
+      <span class="font-openSans text-[14px] font-[600] leading-[20px]">
+        {{ question.category[0].title }}
+      </span>
+      <div class="flex justify-between">
+        <div class="mb-2 flex flex-1 gap-4 text-[12px] font-[400]">
+          <span>{{ question.level | lowercase }}</span>
+          <span>|</span>
+          <span>{{ question.duration | plural }}</span>
+        </div>
+        <div
+          *ngIf="userRole === 'SUPER_ADMIN'"
+          class="flex flex-1 justify-end gap-4">
+          <i
+            matTooltip="Edit"
+            (click)="editQuestion(question._id)"
+            class="fa-regular fa-pen-to-square hover:cursor-pointer"></i>
+          <i
+            matTooltip="Delete"
+            (click)="deleteQuestion(question._id)"
+            class="fa-regular fa-trash-can hover:cursor-pointer"></i>
+        </div>
       </div>
-    </div>
-    <div class="w-[50%]">
-      <div class="p-12">
-        <p class="!mb-4">SELECT ONLY ONE</p>
-        <fieldset class="">
-          <legend class="sr-only">Question</legend>
-          <div class="space-y-4">
-            <!-- Active: "border-indigo-600 ring-2 ring-indigo-600", Not Active: "border-gray-300" -->
-            <label (click)="setActiveOption(option)" [ngClass]="activeOption===option?'border-[#44aa97]  ring-2 ring-[#44aa97]':'border-gray-300'" *ngFor="let option of question.options" class="relative block cursor-pointer rounded-lg border bg-white px-6 py-4 shadow-sm focus:outline-none sm:flex sm:justify-between">
-              <input type="radio" name="server-size" value="Hobby" class="sr-only">
-              <span class="flex items-center">
-                  <span [innerHTML]="option" id="server-size-0-label" class="font-medium text-gray-900"></span>
-              </span>
-
-              <!--
-                Active: "border", Not Active: "border-2"
-                Checked: "border-indigo-600", Not Checked: "border-transparent"
-              -->
-              <span [ngClass]="activeOption===option?'border':'border-2'" class="pointer-events-none absolute -inset-px rounded-lg" aria-hidden="true"></span>
-            </label>
-          </div>
-        </fieldset>
-
-
-
+      <hr class="mb-2" />
+      <p
+        [routerLink]="['/dashboard/questions', question._id]"
+        class="font-openSans text-[14px] font-[400] leading-[20px] hover:cursor-pointer"
+        [innerHTML]="question.title">
+        <!-- {{ question.title }} -->
+      </p>
+      <div *ngIf="parent === 'assessment'" class="text-right">
+        <button
+          (click)="onClickAddButton(question._id)"
+          mat-button
+          class="mr-2 px-3.5 py-2.5 !text-white">
+          Add
+        </button>
       </div>
     </div>
   </div>

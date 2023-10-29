@@ -1,0 +1,228 @@
+<div class="h-[95%] bg-[#F5F6F6]">
+  <div class="relative m-auto w-[90vw] px-[2rem]">
+    <div>
+      <h2 class="py-4">Create new assessment</h2>
+    </div>
+
+    <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+      <mat-stepper [linear]="isLinear" #stepper class="!bg-inherit">
+        <mat-step [stepControl]="questionForm">
+          <div class="float-right mb-4">
+            <button
+              mat-raised-button
+              color="primary"
+              type="button"
+              matStepperNext>
+              Next
+            </button>
+          </div>
+          <div formGroupName="assessmentName">
+            <ng-template class="mb-4" matStepLabel>Name assessment</ng-template>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Name your assessment</mat-label>
+              <input matInput formControlName="title" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Job role</mat-label>
+              <input matInput formControlName="jobRole" />
+            </mat-form-field>
+          </div>
+        </mat-step>
+        <mat-step label="Select tests">
+          <div class="mb-8 flex justify-between">
+            <button
+              mat-raised-button
+              color="primary"
+              type="button"
+              matStepperPrevious>
+              Back
+            </button>
+            <button
+              mat-raised-button
+              color="primary"
+              type="button"
+              matStepperNext>
+              Next
+            </button>
+          </div>
+          <div
+            cdkDropList
+            cdkDropListOrientation="horizontal"
+            class="flex h-12 w-full gap-2 rounded-md border-2 bg-white"
+            (cdkDropListDropped)="drop($event)">
+            <div
+              class="flex flex-grow justify-between rounded-md border-2 px-6 py-3"
+              *ngFor="let category of selectedCategories"
+              cdkDrag>
+              <span>{{ category.title }}</span>
+              <span>
+                <i
+                  (click)="deleteFromSelectedCategories(category._id)"
+                  class="fa-solid fa-xmark hover:cursor-pointer"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-4">
+            <app-category-card
+              parent="assessment"
+              (addButtonClickEvent)="onCategoryAddButtonClick($event)"
+              [category]="category"
+              *ngFor="let category of allCategories"></app-category-card>
+          </div>
+        </mat-step>
+        <mat-step label="Add questions">
+          <div class="mb-8 flex justify-between">
+            <button
+              mat-raised-button
+              color="primary"
+              type="button"
+              matStepperPrevious>
+              Back
+            </button>
+            <button
+              mat-raised-button
+              color="primary"
+              type="button"
+              matStepperNext>
+              Next
+            </button>
+          </div>
+          <div class="mb-2">
+            <div
+              class="mb-2 flex items-center justify-between gap-4 rounded-md border-2 bg-white p-3"
+              *ngFor="let question of selectedQuestions">
+              <span [innerHTML]="question.title"></span>
+              <span>
+                <i
+                  (click)="deleteFromSelectedQuestions(question._id)"
+                  class="fa-solid fa-xmark hover:cursor-pointer"></i>
+              </span>
+            </div>
+          </div>
+          <div class="mt-8">
+            <app-question-card
+              (addQuestionEvent)="onQuestionAddButtonClick($event)"
+              *ngFor="let question of allQuestions"
+              [question]="question"
+              parent="assessment"></app-question-card>
+          </div>
+        </mat-step>
+        <mat-step label="Review & configure">
+          <div class="mb-8 flex justify-between">
+            <button
+              mat-raised-button
+              color="primary"
+              type="button"
+              matStepperPrevious>
+              Back
+            </button>
+            <button mat-raised-button color="primary">Submit</button>
+          </div>
+          <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div
+              class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+              <div
+                class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+                <div class="flex flex-col gap-2 p-4">
+                  <div class="flex justify-between">
+                    <h3>Assessment name</h3>
+                    <p>{{ questionForm.value.assessmentName?.title }}</p>
+                  </div>
+                  <hr />
+                  <div class="flex justify-between">
+                    <h3>Job role</h3>
+                    <p>{{ questionForm.value.assessmentName?.jobRole }}</p>
+                  </div>
+                  <hr />
+                </div>
+
+                <table class="min-w-full divide-y divide-gray-300">
+                  <caption class="m-2 text-sm font-semibold text-gray-900">
+                    SELECTED TESTS
+                  </caption>
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th
+                        scope="col"
+                        class="w-[75%] py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                        Name
+                      </th>
+                      <th
+                        scope="col"
+                        class="w-[20%] px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                        Duration
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-200 bg-white">
+                    <tr
+                      *ngFor="let category of selectedCategories"
+                      class="hover:cursor-pointer hover:bg-[#F0D6BB]">
+                      <td
+                        class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                        {{ category.title }}
+                      </td>
+                      <td
+                        class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        {{ category.duration | plural }}
+                      </td>
+                      <td
+                        class="flex items-center whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        <i
+                          (click)="deleteFromSelectedCategories(category._id)"
+                          matTooltip="Remove"
+                          class="fa-regular fa-trash-can hover:cursor-pointer"></i>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table class="min-w-full divide-y divide-gray-300">
+                  <caption class="m-2 text-sm font-semibold text-gray-900">
+                    SELECTED QUESTIONS
+                  </caption>
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th
+                        scope="col"
+                        class="w-[75%] py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                        Name
+                      </th>
+                      <th
+                        scope="col"
+                        class="w-[20%] px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                        Duration
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-200 bg-white">
+                    <tr
+                      *ngFor="let question of selectedQuestions"
+                      class="hover:cursor-pointer hover:bg-[#F0D6BB]">
+                      <td
+                        class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                        {{ question.title | slice: 0 : 50 }}...
+                      </td>
+                      <td
+                        class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        {{ question.duration | plural }}
+                      </td>
+                      <td
+                        class="flex items-center whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        <i
+                          (click)="deleteFromSelectedQuestions(question._id)"
+                          matTooltip="Remove"
+                          class="fa-regular fa-trash-can hover:cursor-pointer"></i>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </mat-step>
+      </mat-stepper>
+    </form>
+  </div>
+</div>

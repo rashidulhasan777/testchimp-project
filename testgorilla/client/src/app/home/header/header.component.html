@@ -15,17 +15,23 @@
       </div>
       <div class="flex gap-8" [ngClass]="authenticated ? 'hidden' : ''">
         <li class="p-3">
-          <a routerLink="/login" class="text-[#44aa97] hover:text-black">Login</a>
+          <a routerLink="/login" class="text-[#44aa97] hover:text-black">
+            Login
+          </a>
         </li>
-        <li class="rounded-md bg-[#44aa97] px-6 py-3 text-white hover:bg-[#31766A]">
+        <li
+          class="rounded-md bg-[#44aa97] px-6 py-3 text-white hover:bg-[#31766A]">
           <a routerLink="/signup">Try for free!</a>
         </li>
       </div>
       <div class="flex gap-8" [ngClass]="authenticated ? '' : 'hidden'">
         <li class="p-3">
-          <a routerLink="/dashboard" class="text-[#44aa97] hover:text-black">Dashboard</a>
+          <a routerLink="/dashboard" class="text-[#44aa97] hover:text-black">
+            Dashboard
+          </a>
         </li>
-        <li class="rounded-md bg-[#44aa97] px-6 py-3 text-white hover:bg-[#31766A]">
+        <li
+          class="rounded-md bg-[#44aa97] px-6 py-3 text-white hover:bg-[#31766A]">
           <button (click)="logout()">Logout</button>
         </li>
       </div>

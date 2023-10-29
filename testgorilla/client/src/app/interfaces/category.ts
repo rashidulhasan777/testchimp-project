@@ -6,7 +6,10 @@ export interface Category {
   shortDescription: string;
   description: string;
   skills: string[];
-  relevantRoles: string[];
+  level: string;
+  type: string;
+  duration?: number;
+  relevantRoles: string;
   createdBy?: User;
   createdAt?: string;
 }

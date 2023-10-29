@@ -10,43 +10,30 @@ const getCategoryById = async (id: string) => {
   return category;
 };
 
-const createCategory = async (
-  createdBy: string,
-  title: string,
-  shortDescription: string,
-  description: string,
-  level: string,
-  skills: string[],
-  relevantRoles: string[],
-) => {
-  const category = await Category.create({
-    title,
-    shortDescription,
-    description,
-    level,
-    skills,
-    relevantRoles,
-    createdBy,
-  });
+type CategoryType = {
+  title: string;
+  shortDescription: string;
+  description: string;
+  level: string;
+  type: string;
+  skills: string[];
+  relevantRoles: string;
+  createdBy?: string;
+};
+
+const createCategory = async (categoryObject: CategoryType) => {
+  const category = await Category.create({ ...categoryObject });
   return category;
 };
 
 const updateCategoryById = async (
-  id: string,
-  title: string,
-  shortDescription: string,
-  description: string,
-  skills: string[],
-  relevantRoles: string[],
+  categoryId: string,
+  categoryObject: CategoryType,
 ) => {
   const category = await Category.findByIdAndUpdate(
-    { _id: id },
+    { _id: categoryId },
     {
-      title,
-      shortDescription,
-      description,
-      skills,
-      relevantRoles,
+      ...categoryObject,
     },
     { new: true },
   );

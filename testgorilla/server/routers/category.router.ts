@@ -38,9 +38,9 @@ router.post(
     body('relevantRoles')
       .trim()
       .notEmpty()
-      .withMessage('Relevant Roles are required')
-      .isArray()
-      .withMessage('Relevant Roles must be an array'),
+      .withMessage('Relevant Roles are required'),
+    body('level').trim().notEmpty().withMessage('Level is required'),
+    body('type').trim().notEmpty().withMessage('Type is required'),
     validationMiddleware,
   ],
   createCategoryController,
@@ -66,9 +66,9 @@ router.put(
     body('relevantRoles')
       .trim()
       .notEmpty()
-      .withMessage('Relevant Roles are required')
-      .isArray()
-      .withMessage('Relevant Roles must be an array'),
+      .withMessage('Relevant Roles are required'),
+    body('level').trim().notEmpty().withMessage('Level is required'),
+    body('type').trim().notEmpty().withMessage('Type is required'),
     validationMiddleware,
   ],
   updateCategoryByIdController,

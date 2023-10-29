@@ -11,26 +11,54 @@
   </div>
 </div> -->
 
-<mat-card class="w-[16rem] h-[22rem] mb-4 flex flex-col justify-between text-[#252525]">
+<mat-card
+  class="mb-4 flex h-[22rem] w-[16rem] flex-col justify-between text-[#252525]">
   <div>
     <mat-card-header class="">
-      <mat-card-title class="!font-openSans !font-[700] !text-[18px] !leading-[25px] h-16 !mb-3">{{ category.title }}</mat-card-title>
+      <mat-card-title
+        class="!mb-3 h-16 !font-openSans !text-[18px] !font-[700] !leading-[25px]">
+        {{ category.title }}
+      </mat-card-title>
 
       <!-- <mat-card-subtitle>{{ category.shortDescription }}</mat-card-subtitle> -->
     </mat-card-header>
-    <mat-card-content class="!font-openSans !font-[400] !text-[14px] !leading-[20px]">
-      {{ category.shortDescription | slice:0:250 }}{{ category.shortDescription.length > 250 ? '...' : '' }}
+    <mat-card-content
+      class="!font-openSans !text-[14px] !font-[400] !leading-[20px]">
+      {{ category.shortDescription | slice: 0 : 250
+      }}{{ category.shortDescription.length > 250 ? '...' : '' }}
     </mat-card-content>
   </div>
-  <div class="flex justify-between items-center mb-2">
+  <div class="mb-2 flex items-center justify-between">
     <mat-card-actions class="flex gap-2">
-      <button matTooltip="Preview" class="px-3.5 py-2.5 bg-[#ededed] rounded-md"><i class="fa-regular fa-eye"></i></button>
-      <button (click)="showDetails()" class="px-3.5 py-2 border hover:bg-[#ededed] hover:border-black rounded-md">Details</button>
+      <button
+        [routerLink]="['/dashboard/preview/', category._id]"
+        matTooltip="Preview"
+        class="rounded-md bg-[#ededed] px-3.5 py-2.5">
+        <i class="fa-regular fa-eye"></i>
+      </button>
+      <button
+        (click)="showDetails()"
+        class="rounded-md border px-3.5 py-2 hover:border-black hover:bg-[#ededed]">
+        Details
+      </button>
     </mat-card-actions>
-    <div *ngIf="userRole === 'SUPER_ADMIN'" class="flex gap-2 mr-4">
-      <i matTooltip="Edit" (click)="editCategory(category._id)" class="fa-regular fa-pen-to-square hover:cursor-pointer"></i>
-      <i matTooltip="Delete" (click)="deleteCategory(category._id)" class="fa-regular fa-trash-can hover:cursor-pointer"></i>
+    <div *ngIf="userRole === 'SUPER_ADMIN'" class="mr-4 flex gap-2">
+      <i
+        matTooltip="Edit"
+        (click)="editCategory(category._id)"
+        class="fa-regular fa-pen-to-square hover:cursor-pointer"></i>
+      <i
+        matTooltip="Delete"
+        (click)="deleteCategory(category._id)"
+        class="fa-regular fa-trash-can hover:cursor-pointer"></i>
+    </div>
+    <div *ngIf="parent === 'assessment'">
+      <button
+        (click)="onClickAddButton()"
+        mat-button
+        class="mr-2 px-3.5 py-2.5 !text-white">
+        Add
+      </button>
     </div>
   </div>
-
 </mat-card>

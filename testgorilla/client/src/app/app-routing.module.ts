@@ -3,15 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './authentication/login/login.component';
 import { SignupComponent } from './authentication/signup/signup.component';
 import { AssessmentComponent } from './dashboard/assessment/assessment.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HomeComponent } from './home/home.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { NewAssessmentComponent } from './dashboard/new-assessment/new-assessment.component';
-import { QuestionComponent } from './dashboard/question/question.component';
-import { NewQuestionComponent } from './dashboard/question/new-question/new-question.component';
-import { QuestionDetailsComponent } from './dashboard/question/question-details/question-details.component';
+import { NewAssessmentComponent } from './dashboard/assessment/new-assessment/new-assessment.component';
 import { CategoryComponent } from './dashboard/category/category.component';
 import { NewCategoryComponent } from './dashboard/category/new-category/new-category.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NewQuestionComponent } from './dashboard/question/new-question/new-question.component';
+import { QuestionDetailsComponent } from './dashboard/question/question-details/question-details.component';
+import { QuestionComponent } from './dashboard/question/question.component';
+import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {

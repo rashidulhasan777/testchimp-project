@@ -14,7 +14,9 @@ import { CategoryPopupComponent } from '../category-popup/category-popup.compone
 export class CategoryCardComponent {
   @Input() category!: Category;
   @Input() userRole!: string | undefined;
+  @Input() parent: string | undefined;
   @Output() deleteCategoryEvent = new EventEmitter<string>();
+  @Output() addButtonClickEvent = new EventEmitter<string>();
   constructor(
     private router: Router,
     private dialog: MatDialog,
@@ -54,5 +56,8 @@ export class CategoryCardComponent {
       height: '90%',
       data: this.category,
     });
+  }
+  onClickAddButton() {
+    this.addButtonClickEvent.emit(this.category._id);
   }
 }

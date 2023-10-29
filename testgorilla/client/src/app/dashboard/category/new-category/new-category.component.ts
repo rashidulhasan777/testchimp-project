@@ -40,6 +40,8 @@ export class NewCategoryComponent implements OnInit {
       shortDescription: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required),
       skills: new FormControl(null, Validators.required),
+      level: new FormControl(null, Validators.required),
+      type: new FormControl(null, Validators.required),
       relevantRoles: new FormControl(null, Validators.required),
     });
     if (this.categoryId && this.userRole === 'SUPER_ADMIN') {
@@ -60,8 +62,10 @@ export class NewCategoryComponent implements OnInit {
               category.skills.join(','),
               Validators.required,
             ),
+            level: new FormControl(category.level, Validators.required),
+            type: new FormControl(category.type, Validators.required),
             relevantRoles: new FormControl(
-              category.relevantRoles.join(','),
+              category.relevantRoles,
               Validators.required,
             ),
           });
@@ -77,7 +81,9 @@ export class NewCategoryComponent implements OnInit {
       shortDescription: this.categoryForm.value.shortDescription,
       description: this.categoryForm.value.description,
       skills: this.categoryForm.value.skills.split(','),
-      relevantRoles: this.categoryForm.value.relevantRoles.split(','),
+      level: this.categoryForm.value.level,
+      type: this.categoryForm.value.type,
+      relevantRoles: this.categoryForm.value.relevantRoles,
     };
     return category;
   }
