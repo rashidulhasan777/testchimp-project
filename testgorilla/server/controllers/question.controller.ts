@@ -4,6 +4,7 @@ import {
   createQuestion,
   deleteQuestionById,
   getAllQuestions,
+  getQuestionByCategory,
   getQuestionById,
   updateQuestionById,
 } from '../models/question/query';
@@ -11,6 +12,17 @@ import {
 const getQuestionsController = async (req: Request, res: Response) => {
   try {
     const questions = await getAllQuestions();
+    res.json(questions);
+  } catch (error: any) {
+    res.status(500);
+    res.json({ error: error.message });
+  }
+};
+
+const getQuestionByCategoryController = async (req: Request, res: Response) => {
+  try {
+    const categoryIds = req.body.categoryIds;
+    const questions = await getQuestionByCategory(categoryIds);
     res.json(questions);
   } catch (error: any) {
     res.status(500);
@@ -87,4 +99,5 @@ export {
   getQuestionByIdController,
   getQuestionsController,
   updateQuestionByIdController,
+  getQuestionByCategoryController,
 };

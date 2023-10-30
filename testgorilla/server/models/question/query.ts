@@ -92,10 +92,25 @@ const getAllQuestions = async () => {
   return questions;
 };
 
+const getQuestionByCategory = async (categoryIds: (string | undefined)[]) => {
+  const questions = await Question.find(
+    {
+      category: {
+        $in: categoryIds,
+      },
+    },
+    {
+      _id: 1,
+    },
+  );
+  return questions.map((question) => question._id);
+};
+
 export {
   createQuestion,
   deleteQuestionById,
   getAllQuestions,
   getQuestionById,
   updateQuestionById,
+  getQuestionByCategory,
 };

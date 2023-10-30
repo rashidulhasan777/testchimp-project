@@ -12,6 +12,8 @@ import { QuestionDetailsComponent } from './dashboard/question/question-details/
 import { QuestionComponent } from './dashboard/question/question.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CategoryPreviewComponent } from './dashboard/category/category-preview/category-preview.component';
+import { AssessmentDetailsComponent } from './dashboard/assessment/assessment-details/assessment-details.component';
 
 const routes: Routes = [
   {
@@ -37,6 +39,14 @@ const routes: Routes = [
       {
         path: 'assessments/new',
         component: NewAssessmentComponent,
+      },
+      {
+        path: 'assessments/edit/:id',
+        component: NewAssessmentComponent,
+      },
+      {
+        path: 'assessments/:id',
+        component: AssessmentDetailsComponent,
       },
       {
         path: 'questions',
@@ -65,6 +75,10 @@ const routes: Routes = [
       {
         path: 'tests/edit/:id',
         component: NewCategoryComponent,
+      },
+      {
+        path: 'preview/:id',
+        component: CategoryPreviewComponent,
       },
     ],
   },

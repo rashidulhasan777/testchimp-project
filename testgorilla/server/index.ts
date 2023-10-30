@@ -9,6 +9,7 @@ import candidateRouter from './routers/candidate.router';
 import categoryRouter from './routers/category.router';
 import questionRouter from './routers/question.router';
 import userRouter from './routers/user.router';
+import emailRouter from './routers/email.router';
 
 config();
 
@@ -30,6 +31,7 @@ app.use('/api/category', protectMiddleware, categoryRouter);
 app.use('/api/question', protectMiddleware, questionRouter);
 app.use('/api/assessment', protectMiddleware, assessmentRouter);
 app.use('/api/candidate', protectMiddleware, candidateRouter);
+app.use('/api/mailer', protectMiddleware, emailRouter);
 app.use('/users', userRouter);
 
 (async function bootstrap() {

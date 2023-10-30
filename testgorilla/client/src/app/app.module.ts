@@ -29,6 +29,9 @@ import { QuestionDetailsComponent } from './dashboard/question/question-details/
 import { QuestionComponent } from './dashboard/question/question.component';
 import { MaterialModule } from './material.module';
 import { PluralPipe } from './pipes/plural.pipe';
+import { CategoryPreviewComponent } from './dashboard/category/category-preview/category-preview.component';
+import { AssessmentDetailsComponent } from './dashboard/assessment/assessment-details/assessment-details.component';
+import { HotToastModule } from '@ngneat/hot-toast';
 
 @NgModule({
   declarations: [
@@ -53,6 +56,8 @@ import { PluralPipe } from './pipes/plural.pipe';
     CategoryCardComponent,
     ConfirmPopupComponent,
     CategoryPopupComponent,
+    CategoryPreviewComponent,
+    AssessmentDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,6 +67,7 @@ import { PluralPipe } from './pipes/plural.pipe';
     CookieModule.withOptions(),
     BrowserAnimationsModule,
     MaterialModule,
+    HotToastModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

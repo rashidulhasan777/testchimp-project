@@ -19,6 +19,15 @@ export class QuestionService {
       withCredentials: true,
     });
   }
+  getQuestionByCategory(
+    categoryIds: (string | undefined)[],
+  ): Observable<string[]> {
+    return this.httpClient.post<string[]>(
+      `${this.baseUrl}/api/question/category`,
+      { categoryIds },
+      { withCredentials: true },
+    );
+  }
   createQuestion(question: Question) {
     return this.httpClient.post(`${this.baseUrl}/api/question`, question, {
       withCredentials: true,

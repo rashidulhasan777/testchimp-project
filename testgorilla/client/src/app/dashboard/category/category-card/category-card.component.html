@@ -30,12 +30,13 @@
   </div>
   <div class="mb-2 flex items-center justify-between">
     <mat-card-actions class="flex gap-2">
-      <button
+      <a
         [routerLink]="['/dashboard/preview/', category._id]"
+        target="_blank"
         matTooltip="Preview"
         class="rounded-md bg-[#ededed] px-3.5 py-2.5">
         <i class="fa-regular fa-eye"></i>
-      </button>
+      </a>
       <button
         (click)="showDetails()"
         class="rounded-md border px-3.5 py-2 hover:border-black hover:bg-[#ededed]">

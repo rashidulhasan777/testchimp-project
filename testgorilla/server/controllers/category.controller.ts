@@ -6,6 +6,7 @@ import {
   getAllCategories,
   getCategoryById,
   updateCategoryById,
+  getQuestionByCategoryId,
 } from '../models/category/query';
 
 const getAllCategoriesController = async (req: Request, res: Response) => {
@@ -22,6 +23,20 @@ const getCategoryByIdController = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
     const category = await getCategoryById(id);
+    res.json(category);
+  } catch (error: any) {
+    res.status(500);
+    res.json({ error: error.message });
+  }
+};
+
+const getQuestionByCategoryIdController = async (
+  req: Request,
+  res: Response,
+) => {
+  try {
+    const categoryId = req.params.id;
+    const category = await getQuestionByCategoryId(categoryId);
     res.json(category);
   } catch (error: any) {
     res.status(500);
@@ -89,4 +104,5 @@ export {
   getAllCategoriesController,
   getCategoryByIdController,
   updateCategoryByIdController,
+  getQuestionByCategoryIdController,
 };

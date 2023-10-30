@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '../interfaces/category';
+import { Question } from '../interfaces/question';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,14 @@ export class CategoryService {
     return this.httpClient.get<Category>(`${this.baseUrl}/api/category/${id}`, {
       withCredentials: true,
     });
+  }
+  getQuestionsByCategoryId(id: string): Observable<Question[]> {
+    return this.httpClient.get<Question[]>(
+      `${this.baseUrl}/api/category/${id}/questions`,
+      {
+        withCredentials: true,
+      },
+    );
   }
   createCategory(category: Category): Observable<Category> {
     return this.httpClient.post<Category>(

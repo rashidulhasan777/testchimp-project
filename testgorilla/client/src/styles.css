@@ -29,8 +29,8 @@ mat-step-header {
 }
 
 input:focus {
-  /* outline: none; */
-  box-shadow: none;
+  outline: none;
+  box-shadow: none!important;
 }
 
 .mat-stepper-next, .mat-stepper-previous, .mdc-button  {

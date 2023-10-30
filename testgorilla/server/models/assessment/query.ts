@@ -1,7 +1,32 @@
 import Assessment from './model';
 
+type AssessmentType = {
+  title: string;
+  jobRole: string;
+  questions: string[];
+  candidates: string[];
+  createdBy: string;
+};
+
 const getAllAssessments = async () => {
-  const assessment = await Assessment.find();
+  const assessment = await Assessment.aggregate([
+    {
+      $lookup: {
+        from: 'questions',
+        localField: 'questions',
+        foreignField: '_id',
+        as: 'questions',
+      },
+    },
+    {
+      $lookup: {
+        from: 'candidates',
+        localField: 'candidates',
+        foreignField: '_id',
+        as: 'candidates',
+      },
+    },
+  ]);
   return assessment;
 };
 
@@ -10,37 +35,19 @@ const getAssessmentById = async (id: string) => {
   return assessment;
 };
 
-const createAssessment = async (
-  title: string,
-  description: string,
-  categories: string[],
-  candidates: string[],
-  createdBy: string,
-) => {
-  const assessment = await Assessment.create({
-    title,
-    description,
-    categories,
-    candidates,
-    createdBy,
-  });
+const createAssessment = async (assessmentObject: AssessmentType) => {
+  const assessment = await Assessment.create({ ...assessmentObject });
   return assessment;
 };
 
 const updateAssessmentById = async (
-  id: string,
-  title: string,
-  description: string,
-  categories: string[],
-  candidates: string[],
+  assessmentId: string,
+  assessmentObject: AssessmentType,
 ) => {
   const assessment = await Assessment.findByIdAndUpdate(
-    { _id: id },
+    { _id: assessmentId },
     {
-      title,
-      description,
-      categories,
-      candidates,
+      ...assessmentObject,
     },
     { new: true },
   );

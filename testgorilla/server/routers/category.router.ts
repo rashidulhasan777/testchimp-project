@@ -7,6 +7,7 @@ import {
   getAllCategoriesController,
   getCategoryByIdController,
   updateCategoryByIdController,
+  getQuestionByCategoryIdController,
 } from '../controllers/category.controller';
 
 import validationMiddleware from '../middlewares/validation.middleware';
@@ -16,6 +17,8 @@ const router = express.Router();
 // Category Routes - /api/test
 router.get('/', getAllCategoriesController);
 router.get('/:id', getCategoryByIdController);
+
+router.get('/:id/questions', getQuestionByCategoryIdController);
 
 router.post(
   '/',

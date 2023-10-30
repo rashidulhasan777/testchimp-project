@@ -6,6 +6,7 @@ import {
   getQuestionByIdController,
   getQuestionsController,
   updateQuestionByIdController,
+  getQuestionByCategoryController,
 } from '../controllers/question.controller';
 import validationMiddleware from '../middlewares/validation.middleware';
 
@@ -15,6 +16,20 @@ const router = express.Router();
 router.get('/', getQuestionsController);
 
 router.get('/:id', getQuestionByIdController);
+
+router.post(
+  '/category',
+  [
+    body('categoryIds')
+      .trim()
+      .notEmpty()
+      .withMessage('Category Ids are required')
+      .isArray()
+      .withMessage('Category Ids must be an array'),
+    validationMiddleware,
+  ],
+  getQuestionByCategoryController,
+);
 
 router.post(
   '/',

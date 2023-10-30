@@ -4,7 +4,7 @@ const AssessmentSchema = new Schema({
   title: { type: String, required: true },
   jobRole: { type: String },
   createdBy: { type: Schema.Types.ObjectId, ref: 'User' },
-  categories: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
+  questions: [{ type: Schema.Types.ObjectId, ref: 'Question' }],
   candidates: [{ type: Schema.Types.ObjectId, ref: 'Candidate' }],
   deadline: { type: Date },
   createdAt: { type: Date, required: true, default: Date.now },

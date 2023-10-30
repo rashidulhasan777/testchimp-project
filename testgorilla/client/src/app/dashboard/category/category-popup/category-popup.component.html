@@ -1,13 +1,14 @@
 <div class="flex h-full w-full items-center justify-center bg-[#F6F6F6]">
   <div class="h-[90%] w-[90%]">
     <div class="flex justify-between">
-      <button
+      <a
         mat-dialog-close
         [routerLink]="['/dashboard/preview/', inputData?._id]"
+        target="_blank"
         class="rounded-md bg-[#ededed] px-3.5 py-2.5">
         <i class="fa-regular fa-eye"></i>
         Preview sample question
-      </button>
+      </a>
       <i
         mat-dialog-close
         class="fa-solid fa-xmark p-2 hover:cursor-pointer"></i>

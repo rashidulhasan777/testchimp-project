@@ -14,4 +14,17 @@ export class AssessmentService {
       withCredentials: true,
     });
   }
+  getAssessmentById(id: string): Observable<Assessment> {
+    return this.httpClient.get<Assessment>(
+      `${this.baseUrl}/api/assessment/${id}`,
+      { withCredentials: true },
+    );
+  }
+  createAssessment(assessment: Assessment): Observable<Assessment> {
+    return this.httpClient.post<Assessment>(
+      `${this.baseUrl}/api/assessment`,
+      assessment,
+      { withCredentials: true },
+    );
+  }
 }

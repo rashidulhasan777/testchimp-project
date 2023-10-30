@@ -1,0 +1,108 @@
+<div class="mt-4 bg-white" *ngIf="assessment">
+  <div class="m-auto w-[90vw] px-[2rem] py-4">
+    <div class="flex items-center justify-between">
+      <div class="flex gap-2">
+        <button
+          class="mr-2 rounded-md bg-[#EDEDED] px-4 py-2.5"
+          (click)="backClicked()">
+          <i class="fa-solid fa-chevron-left" matTooltip="Back"></i>
+        </button>
+        <div>
+          <h2
+            class="!m-0 !font-openSans !text-[20px] !font-[700] !leading-[28px]">
+            {{ assessment.title }}
+          </h2>
+          <div
+            class="flex gap-4 !font-openSans !text-[14px] !font-[400] !leading-[20px]">
+            <p>{{ assessment.questions.length }} questions</p>
+            |
+            <p>
+              {{
+                assessment.deadline
+                  ? (assessment.deadline | date)
+                  : 'No deadline'
+              }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <button
+          class="mr-2 rounded-md bg-[#EDEDED] px-4 py-2.5"
+          (click)="editAssessment()">
+          <i
+            matTooltip="Edit"
+            class="fa-solid fa-pencil hover:cursor-pointer"></i>
+        </button>
+        <button class="mr-2 rounded-md bg-[#EDEDED] px-4 py-2.5">
+          <i
+            matTooltip="Delete"
+            class="fa-regular fa-trash-can hover:cursor-pointer"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="flex min-h-full bg-[#F5F6F6]">
+  <div class="relative mx-auto w-[90vw] px-[2rem]">
+    <div class="mt-8 h-[50vh] rounded-md bg-white px-4 py-5 sm:px-6">
+      <h3 class="!font-openSans !text-[14px] !font-[700] !leading-[20px]">
+        INVITE CANDIDATES
+      </h3>
+
+      <div class="flex h-[90%]">
+        <div class="basis-[50%] border-r">
+          <h4 class="!font-openSans !text-[14px] !font-[700] !leading-[20px]">
+            By public link:
+          </h4>
+          <div class="m-auto flex w-[90%] justify-between">
+            <span>Public link</span>
+            <button
+              class="rounded-md border border-black px-4 py-2.5"
+              (click)="copyLink()">
+              Copy link
+            </button>
+          </div>
+        </div>
+        <div class="basis-[50%]">
+          <div class="m-auto w-[90%]">
+            <h4 class="!font-openSans !text-[14px] !font-[700] !leading-[20px]">
+              By email:
+            </h4>
+            <form
+              class="text-center"
+              (submit)="onSubmit()"
+              [formGroup]="emailForm">
+              <mat-form-field appearance="outline" class="w-full">
+                <mat-label>First name</mat-label>
+                <input matInput type="text" formControlName="firstName" />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="w-full">
+                <mat-label>Last name</mat-label>
+                <input matInput type="text" formControlName="lastName" />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="w-full">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email" />
+              </mat-form-field>
+              <button
+                class="rounded-md border border-black px-4 py-2.5"
+                type="submit">
+                Send invitation
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-8 mt-8 min-h-[40vh] rounded-md bg-white px-4 py-5 sm:px-6">
+      <!-- candidates goes here -->
+    </div>
+  </div>
+</div>
+
+<!--
+            (click)="editCategory(category._id)"
+                      (click)="deleteCategory(category._id)"
+ -->

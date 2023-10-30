@@ -1,3 +1,4 @@
+import Question from '../question/model';
 import Category from './model';
 
 const getAllCategories = async () => {
@@ -8,6 +9,11 @@ const getAllCategories = async () => {
 const getCategoryById = async (id: string) => {
   const category = await Category.findById(id);
   return category;
+};
+
+const getQuestionByCategoryId = async (categoryId: string) => {
+  const questions = await Question.find({ category: categoryId });
+  return questions;
 };
 
 type CategoryType = {
@@ -51,4 +57,5 @@ export {
   getAllCategories,
   getCategoryById,
   updateCategoryById,
+  getQuestionByCategoryId,
 };

@@ -20,10 +20,13 @@ router.post(
   '/',
   [
     body('title').trim().notEmpty().withMessage('Title is required'),
-    body('description')
+    body('jobRole').trim().notEmpty().withMessage('Job Role is required'),
+    body('questions')
       .trim()
       .notEmpty()
-      .withMessage('Description is required'),
+      .withMessage('Questions are required')
+      .isArray()
+      .withMessage('Questions must be an array'),
     validationMiddleware,
   ],
   createAssessmentController,
@@ -33,10 +36,13 @@ router.put(
   '/:id',
   [
     body('title').trim().notEmpty().withMessage('Title is required'),
-    body('description')
+    body('jobRole').trim().notEmpty().withMessage('Job Role is required'),
+    body('questions')
       .trim()
       .notEmpty()
-      .withMessage('Description is required'),
+      .withMessage('Questions are required')
+      .isArray()
+      .withMessage('Questions must be an array'),
     validationMiddleware,
   ],
   updateAssessmentByIdController,

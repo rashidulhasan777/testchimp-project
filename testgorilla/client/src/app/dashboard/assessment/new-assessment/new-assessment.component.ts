@@ -1,8 +1,11 @@
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Assessment } from 'src/app/interfaces/assessment';
 import { Category } from 'src/app/interfaces/category';
 import { Question } from 'src/app/interfaces/question';
+import { AssessmentService } from 'src/app/services/assessment.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { QuestionService } from 'src/app/services/question.service';
 
@@ -19,7 +22,6 @@ import { QuestionService } from 'src/app/services/question.service';
   ],
 })
 export class NewAssessmentComponent implements OnInit {
-  timePeriods = [1, 2, 3, 4];
   isLinear = true;
   allCategories: Category[] = [];
   selectedCategories: Category[] = [];
@@ -29,6 +31,8 @@ export class NewAssessmentComponent implements OnInit {
     private builder: FormBuilder,
     private categoryService: CategoryService,
     private questionService: QuestionService,
+    private assessmentService: AssessmentService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -59,11 +63,39 @@ export class NewAssessmentComponent implements OnInit {
 
   onSubmit() {
     if (this.questionForm.valid) {
-      console.log(this.questionForm.value);
+      const questions: string[] = [];
+      this.selectedQuestions.forEach((question) => {
+        questions.push(question._id);
+      });
+
+      this.questionService
+        .getQuestionByCategory(this.selectedCategories.map((cat) => cat._id))
+        .subscribe((data) => {
+          data.forEach((questionId) => {
+            questions.push(questionId);
+          });
+        });
+      const assessmentObject: Assessment = {
+        title: this.questionForm.value.assessmentName?.title as string,
+        jobRole: this.questionForm.value.assessmentName?.jobRole as string,
+        questions: questions,
+      };
+      // assessmentObject.questions = questions;
+      console.log(assessmentObject);
+      this.assessmentService
+        .createAssessment(assessmentObject)
+        .subscribe((_data) => {
+          // console.log(data);
+          this.router.navigate(['/dashboard/assessments']);
+        });
     }
   }
   drop(event: any) {
-    moveItemInArray(this.timePeriods, event.previousIndex, event.currentIndex);
+    moveItemInArray(
+      this.selectedCategories,
+      event.previousIndex,
+      event.currentIndex,
+    );
   }
   deleteFromSelectedCategories(id: string | undefined) {
     this.allCategories.push(

@@ -30,30 +30,27 @@ const getAssessmentByIdController = async (req: Request, res: Response) => {
 const createAssessmentController = async (req: AuthRequest, res: Response) => {
   try {
     const { id } = req.user as { id: string };
-    const { title, description, categories, candidates } = req.body;
-    const assessment = await createAssessment(
-      title,
-      description,
-      categories,
-      candidates,
-      id,
-    );
+    // const { title, description, categories, candidates } = req.body;
+    const assessmentObject = { createdBy: id, ...req.body };
+    const assessment = await createAssessment(assessmentObject);
     res.status(201).json(assessment);
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
 };
 
-const updateAssessmentByIdController = async (req: Request, res: Response) => {
+const updateAssessmentByIdController = async (
+  req: AuthRequest,
+  res: Response,
+) => {
   try {
-    const { id } = req.params;
-    const { title, description, categories, candidates } = req.body;
+    // const { title, description, categories, candidates } = req.body;
+    const { id } = req.user as { id: string };
+    const assessmentObject = { createdBy: id, ...req.body };
+
     const assessment = await updateAssessmentById(
-      id,
-      title,
-      description,
-      categories,
-      candidates,
+      req.params.id,
+      assessmentObject,
     );
     res.status(200).json(assessment);
   } catch (error: any) {
