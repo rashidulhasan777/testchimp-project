@@ -13,37 +13,37 @@
           <p class="!mb-4">SELECT ONLY ONE</p>
           <fieldset class="">
             <legend class="sr-only">Question</legend>
-            <div class="space-y-4">
-              <!-- Active: "border-indigo-600 ring-2 ring-indigo-600", Not Active: "border-gray-300" -->
+            <div class="-space-y-px rounded-md bg-white">
+              <!-- Active: "border-[#4DAD9B] ring-2 ring-[#4DAD9B]", Not Active: "border-gray-300" -->
               <label
                 (click)="setActiveOption(option)"
                 [ngClass]="
                   activeOption === option
-                    ? 'border-[#44aa97]  ring-2 ring-[#44aa97]'
-                    : 'border-gray-300'
+                    ? 'z-10 border-[#e0fff9] bg-[#e0fff9]'
+                    : 'border-gray-200'
                 "
                 *ngFor="let option of question.options"
-                class="relative block cursor-pointer rounded-lg border bg-white px-6 py-4 shadow-sm focus:outline-none sm:flex sm:justify-between">
+                class="relative !mb-4 flex cursor-pointer rounded-md border p-4 focus:outline-none">
                 <input
                   type="radio"
-                  name="server-size"
-                  value="Hobby"
-                  class="sr-only" />
-                <span class="flex items-center">
+                  [name]="question._id"
+                  [value]="option"
+                  class="mt-0.5 h-4 w-4 shrink-0 cursor-pointer border-gray-300 text-[#4DAD9B] focus:ring-[#4DAD9B] active:ring-2 active:ring-[#4DAD9B] active:ring-offset-2" />
+                <span class="ml-3 flex flex-col">
                   <span
                     [innerHTML]="option"
-                    id="server-size-0-label"
-                    class="font-medium text-gray-900"></span>
+                    [ngClass]="
+                      activeOption === option
+                        ? 'text-[#32756A]'
+                        : 'text-gray-900'
+                    "
+                    class="block text-sm font-medium"></span>
                 </span>
 
-                <!--
-                      Active: "border", Not Active: "border-2"
-                      Checked: "border-indigo-600", Not Checked: "border-transparent"
-                    -->
-                <span
+                <!-- <span
                   [ngClass]="activeOption === option ? 'border' : 'border-2'"
                   class="pointer-events-none absolute -inset-px rounded-lg"
-                  aria-hidden="true"></span>
+                  aria-hidden="true"></span> -->
               </label>
             </div>
           </fieldset>

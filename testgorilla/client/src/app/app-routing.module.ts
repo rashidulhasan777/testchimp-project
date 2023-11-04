@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CategoryPreviewComponent } from './dashboard/category/category-preview/category-preview.component';
 import { AssessmentDetailsComponent } from './dashboard/assessment/assessment-details/assessment-details.component';
+import { TesttakerComponent } from './testtaker/testtaker.component';
 
 const routes: Routes = [
   {
@@ -81,6 +82,10 @@ const routes: Routes = [
         component: CategoryPreviewComponent,
       },
     ],
+  },
+  {
+    path: 'testtaker/:id',
+    component: TesttakerComponent,
   },
   {
     path: '**',

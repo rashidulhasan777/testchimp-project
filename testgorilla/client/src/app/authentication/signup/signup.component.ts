@@ -31,6 +31,11 @@ export class SignupComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.userService.getUser().subscribe((user) => {
+      if (user) {
+        this.router.navigate(['/']);
+      }
+    });
     this.signupForm = new FormGroup(
       {
         firstName: new FormControl(null, Validators.required),

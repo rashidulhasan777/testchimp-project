@@ -1,11 +1,13 @@
 import { Clipboard } from '@angular/cdk/clipboard';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Assessment } from 'src/app/interfaces/assessment';
 import { AssessmentService } from 'src/app/services/assessment.service';
 import { EmailService } from 'src/app/services/email.service';
+import { ConfirmPopupComponent } from '../../confirm-popup/confirm-popup.component';
 
 @Component({
   selector: 'app-assessment-details',
@@ -13,7 +15,7 @@ import { EmailService } from 'src/app/services/email.service';
   styles: [],
 })
 export class AssessmentDetailsComponent implements OnInit {
-  assessmentLink: string = 'http://localhost:4200/assessment/';
+  assessmentLink: string = 'http://localhost:4200/testtaker/';
   assessment!: Assessment;
   emailForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
@@ -29,6 +31,8 @@ export class AssessmentDetailsComponent implements OnInit {
     private clipboard: Clipboard,
     private toast: HotToastService,
     private emailService: EmailService,
+    private dialog: MatDialog,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -87,6 +91,29 @@ export class AssessmentDetailsComponent implements OnInit {
   }
 
   editAssessment() {
-    // this.router.navigate(['/dashboard/assessment/edit', this.assessment.id]);
+    this.router.navigate(['/dashboard/assessments/edit', this.assessment._id]);
+  }
+  deleteAssessment(id: string | undefined) {
+    // console.log(id);
+    const dialogRef = this.dialog.open(ConfirmPopupComponent, {
+      width: '550px',
+      height: '150px',
+      data: {
+        title: 'Delete Assessment',
+        message: 'Are you sure you want to delete this assessment?',
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'yes') {
+        // console.log('Yes clicked');
+        this.assessmentService
+          .deleteAssessment(id as string)
+          .subscribe((_res) => {
+            // console.log(res);
+            // this.deleteAssessmentEvent.emit(id);
+            this.router.navigate(['/dashboard/assessments']);
+          });
+      }
+    });
   }
 }

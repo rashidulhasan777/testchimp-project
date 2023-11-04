@@ -32,6 +32,7 @@ import { PluralPipe } from './pipes/plural.pipe';
 import { CategoryPreviewComponent } from './dashboard/category/category-preview/category-preview.component';
 import { AssessmentDetailsComponent } from './dashboard/assessment/assessment-details/assessment-details.component';
 import { HotToastModule } from '@ngneat/hot-toast';
+import { TesttakerComponent } from './testtaker/testtaker.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { HotToastModule } from '@ngneat/hot-toast';
     CategoryPopupComponent,
     CategoryPreviewComponent,
     AssessmentDetailsComponent,
+    TesttakerComponent,
   ],
   imports: [
     BrowserModule,

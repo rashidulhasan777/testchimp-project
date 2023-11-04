@@ -13,6 +13,7 @@ export class QuestionDetailsComponent {
   @Input() question!: Question;
   activeOption: string = '';
   isQuestionPage: boolean = false;
+  @Input() parent!: string;
   constructor(
     private activatedRoute: ActivatedRoute,
     private questionService: QuestionService,
@@ -21,13 +22,15 @@ export class QuestionDetailsComponent {
     this.router.events.subscribe((_event) => {
       if (this.router.url.includes('question')) {
         this.isQuestionPage = true;
+        this.loadQuestion(this.question);
       } else {
         this.isQuestionPage = false;
       }
     });
   }
-  ngOnInit(): void {
-    if (this.isQuestionPage) {
+  ngOnInit(): void {}
+  loadQuestion(question: Question) {
+    if (!question) {
       this.questionId = this.activatedRoute.snapshot.params['id'];
       this.questionService.getQuestionById(this.questionId).subscribe(
         (question) => {

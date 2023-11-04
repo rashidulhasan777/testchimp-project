@@ -34,7 +34,9 @@
             matTooltip="Edit"
             class="fa-solid fa-pencil hover:cursor-pointer"></i>
         </button>
-        <button class="mr-2 rounded-md bg-[#EDEDED] px-4 py-2.5">
+        <button
+          class="mr-2 rounded-md bg-[#EDEDED] px-4 py-2.5"
+          (click)="deleteAssessment(assessment._id)">
           <i
             matTooltip="Delete"
             class="fa-regular fa-trash-can hover:cursor-pointer"></i>

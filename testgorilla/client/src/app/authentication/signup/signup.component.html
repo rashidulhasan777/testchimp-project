@@ -1,130 +1,133 @@
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <img
-      class="mx-auto h-10 w-auto"
-      src="../../assets//logo-testgorilla.svg"
-      alt="Your Company" />
-    <h2
-      class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-      Get started with your Free plan.
-    </h2>
-  </div>
+<div
+  class="flex min-h-full flex-col items-center justify-center bg-[#F6F6F6] px-6 py-12 lg:px-8">
+  <div class="rounded-md bg-white p-12 md:w-[40%]">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <img
+        class="mx-auto h-10 w-auto"
+        src="../../assets//logo-testgorilla.svg"
+        alt="Your Company" />
+      <h2
+        class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+        Get started with your Free plan.
+      </h2>
+    </div>
 
-  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form class="space-y-6" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-      <div>
-        <label
-          for="firstName"
-          class="block text-sm font-medium leading-6 text-gray-900">
-          First Name
-        </label>
-        <div class="mt-2">
-          <input
-            formControlName="firstName"
-            id="firstName"
-            name="firstName"
-            type="text"
-            autocomplete="text"
-            required
-            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#44aa97] sm:text-sm sm:leading-6" />
-        </div>
-      </div>
-      <div>
-        <label
-          for="lastName"
-          class="block text-sm font-medium leading-6 text-gray-900">
-          Last Name
-        </label>
-        <div class="mt-2">
-          <input
-            formControlName="lastName"
-            id="lastName"
-            name="lastName"
-            type="text"
-            autocomplete="text"
-            required
-            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#44aa97] sm:text-sm sm:leading-6" />
-        </div>
-      </div>
-      <div>
-        <label
-          for="email"
-          class="block text-sm font-medium leading-6 text-gray-900">
-          Email address
-        </label>
-        <div class="mt-2">
-          <input
-            formControlName="email"
-            id="email"
-            name="email"
-            type="email"
-            autocomplete="email"
-            required
-            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#44aa97] sm:text-sm sm:leading-6" />
-        </div>
-      </div>
-
-      <div>
-        <div class="flex items-center justify-between">
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form class="space-y-6" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div>
           <label
-            for="password"
+            for="firstName"
             class="block text-sm font-medium leading-6 text-gray-900">
-            Password
+            First Name
           </label>
+          <div class="mt-2">
+            <input
+              formControlName="firstName"
+              id="firstName"
+              name="firstName"
+              type="text"
+              autocomplete="text"
+              required
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#44aa97] sm:text-sm sm:leading-6" />
+          </div>
         </div>
-        <div class="mt-2">
-          <input
-            formControlName="password"
-            id="password"
-            name="password"
-            type="password"
-            autocomplete="current-password"
-            required
-            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#44aa97] sm:text-sm sm:leading-6" />
-        </div>
-      </div>
-      <div>
-        <div class="flex items-center justify-between">
+        <div>
           <label
-            for="confirmPassword"
+            for="lastName"
             class="block text-sm font-medium leading-6 text-gray-900">
-            Confirm Password
+            Last Name
           </label>
+          <div class="mt-2">
+            <input
+              formControlName="lastName"
+              id="lastName"
+              name="lastName"
+              type="text"
+              autocomplete="text"
+              required
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#44aa97] sm:text-sm sm:leading-6" />
+          </div>
         </div>
-        <div class="mt-2">
-          <input
-            formControlName="confirmPassword"
-            id="confirmPassword"
-            name="confirmPassword"
-            type="password"
-            autocomplete="current-password"
-            required
-            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#44aa97] sm:text-sm sm:leading-6" />
+        <div>
+          <label
+            for="email"
+            class="block text-sm font-medium leading-6 text-gray-900">
+            Email address
+          </label>
+          <div class="mt-2">
+            <input
+              formControlName="email"
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#44aa97] sm:text-sm sm:leading-6" />
+          </div>
         </div>
-      </div>
 
-      <!-- error message -->
-      <div *ngIf="errorMessage" class="text-sm text-red-500">
-        {{ errorMessage }}
-      </div>
+        <div>
+          <div class="flex items-center justify-between">
+            <label
+              for="password"
+              class="block text-sm font-medium leading-6 text-gray-900">
+              Password
+            </label>
+          </div>
+          <div class="mt-2">
+            <input
+              formControlName="password"
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#44aa97] sm:text-sm sm:leading-6" />
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center justify-between">
+            <label
+              for="confirmPassword"
+              class="block text-sm font-medium leading-6 text-gray-900">
+              Confirm Password
+            </label>
+          </div>
+          <div class="mt-2">
+            <input
+              formControlName="confirmPassword"
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              autocomplete="current-password"
+              required
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#44aa97] sm:text-sm sm:leading-6" />
+          </div>
+        </div>
 
-      <div>
-        <button
-          [disabled]="signupForm.invalid"
-          type="submit"
-          class="flex w-full justify-center rounded-md bg-[#44aa97] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#31766A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#44aa97]">
-          Sign up
-        </button>
-      </div>
-    </form>
+        <!-- error message -->
+        <div *ngIf="errorMessage" class="text-sm text-red-500">
+          {{ errorMessage }}
+        </div>
 
-    <p class="mt-10 text-center text-sm text-gray-500">
-      Already have a TestGorilla account?
-      <a
-        routerLink="/login"
-        class="font-semibold leading-6 text-[#44aa97] hover:text-[#31766A]">
-        Log in
-      </a>
-    </p>
+        <div>
+          <button
+            [disabled]="signupForm.invalid"
+            type="submit"
+            class="flex w-full justify-center rounded-md bg-[#44aa97] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#31766A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#44aa97]">
+            Sign up
+          </button>
+        </div>
+      </form>
+
+      <p class="mt-10 text-center text-sm text-gray-500">
+        Already have a TestGorilla account?
+        <a
+          routerLink="/login"
+          class="font-semibold leading-6 text-[#44aa97] hover:text-[#31766A]">
+          Log in
+        </a>
+      </p>
+    </div>
   </div>
 </div>

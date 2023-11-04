@@ -21,6 +21,12 @@ router.post(
   [
     body('title').trim().notEmpty().withMessage('Title is required'),
     body('jobRole').trim().notEmpty().withMessage('Job Role is required'),
+    body('categories')
+      .trim()
+      .notEmpty()
+      .withMessage('Categories are required')
+      .isArray()
+      .withMessage('Categories must be an array'),
     body('questions')
       .trim()
       .notEmpty()
@@ -37,6 +43,12 @@ router.put(
   [
     body('title').trim().notEmpty().withMessage('Title is required'),
     body('jobRole').trim().notEmpty().withMessage('Job Role is required'),
+    body('categories')
+      .trim()
+      .notEmpty()
+      .withMessage('Categories are required')
+      .isArray()
+      .withMessage('Categories must be an array'),
     body('questions')
       .trim()
       .notEmpty()

@@ -22,6 +22,7 @@
             "styles": [
               "node_modules/@ngneat/hot-toast/src/styles/styles.css",
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "src/custom-theme.scss",
               "node_modules/@ngneat/hot-toast/src/styles/styles.css",
               "src/styles.css"
             ],

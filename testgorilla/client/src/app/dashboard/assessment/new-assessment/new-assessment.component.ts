@@ -1,7 +1,7 @@
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Assessment } from 'src/app/interfaces/assessment';
 import { Category } from 'src/app/interfaces/category';
 import { Question } from 'src/app/interfaces/question';
@@ -27,15 +27,20 @@ export class NewAssessmentComponent implements OnInit {
   selectedCategories: Category[] = [];
   allQuestions: Question[] = [];
   selectedQuestions: Question[] = [];
+  questionForm!: FormGroup;
+  updateMode: boolean = false;
+  assessmentId!: string;
   constructor(
     private builder: FormBuilder,
     private categoryService: CategoryService,
     private questionService: QuestionService,
     private assessmentService: AssessmentService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
+    this.assessmentId = this.activatedRoute.snapshot.params['id'];
     this.categoryService.getCategories().subscribe((data) => {
       this.allCategories = data;
       // console.log(data);
@@ -43,13 +48,30 @@ export class NewAssessmentComponent implements OnInit {
     this.questionService.getQuestions().subscribe((data) => {
       this.allQuestions = data;
     });
+
+    this.questionForm = this.builder.group({
+      assessmentName: this.builder.group({
+        title: this.builder.control('', Validators.required),
+        jobRole: this.builder.control('', Validators.required),
+      }),
+    });
+
+    if (this.assessmentId) {
+      this.assessmentService
+        .getAssessmentById(this.assessmentId)
+        .subscribe((data) => {
+          this.questionForm = this.builder.group({
+            assessmentName: this.builder.group({
+              title: this.builder.control(data.title, Validators.required),
+              jobRole: this.builder.control(data.jobRole, Validators.required),
+            }),
+          });
+          this.selectedCategories = data.categories as Category[];
+          this.selectedQuestions = data.questions as Question[];
+          this.updateMode = true;
+        });
+    }
   }
-  questionForm = this.builder.group({
-    assessmentName: this.builder.group({
-      title: this.builder.control('', Validators.required),
-      jobRole: this.builder.control('', Validators.required),
-    }),
-  });
 
   get assessmentNameForm() {
     return this.questionForm.get('assessmentName') as FormGroup;
@@ -74,20 +96,32 @@ export class NewAssessmentComponent implements OnInit {
           data.forEach((questionId) => {
             questions.push(questionId);
           });
+          const assessmentObject: Assessment = {
+            title: this.questionForm.value.assessmentName?.title as string,
+            jobRole: this.questionForm.value.assessmentName?.jobRole as string,
+            questions: questions,
+            categories: this.selectedCategories.map((cat) => cat._id as string),
+          };
+          if (this.updateMode) {
+            this.assessmentService
+              .updateAssessment(this.assessmentId, assessmentObject)
+              .subscribe((_data) => {
+                // console.log(data);
+                this.router.navigate(['/dashboard/assessments']);
+              });
+            return;
+          } else {
+            this.assessmentService
+              .createAssessment(assessmentObject)
+              .subscribe((_data) => {
+                // console.log(data);
+                this.router.navigate(['/dashboard/assessments']);
+              });
+          }
         });
-      const assessmentObject: Assessment = {
-        title: this.questionForm.value.assessmentName?.title as string,
-        jobRole: this.questionForm.value.assessmentName?.jobRole as string,
-        questions: questions,
-      };
+
       // assessmentObject.questions = questions;
-      console.log(assessmentObject);
-      this.assessmentService
-        .createAssessment(assessmentObject)
-        .subscribe((_data) => {
-          // console.log(data);
-          this.router.navigate(['/dashboard/assessments']);
-        });
+      // console.log(assessmentObject);
     }
   }
   drop(event: any) {

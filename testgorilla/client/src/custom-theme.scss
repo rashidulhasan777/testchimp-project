@@ -1,9 +1,12 @@
-@import '@angular/material/theming';
+@import '../node_modules/@angular/material/theming';
 @include mat-core();
 
-  $primary: mat-palette(#44aa97,200);
-  $accent: mat-palette(#44aa97,200);
+$primary: mat-palette($mat-teal, 500);
+$accent: mat-palette($mat-teal, 700);
 
-  $theme: mat-light-theme($primary, $accent);
+$theme: mat-light-theme($primary, $accent);
 
 @include angular-material-theme($theme);
+
+// "@angular/material/prebuilt-themes/deeppurple-amber.css",
+// use this for the theme in angular.json

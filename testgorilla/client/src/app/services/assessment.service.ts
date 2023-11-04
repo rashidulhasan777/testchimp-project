@@ -27,4 +27,17 @@ export class AssessmentService {
       { withCredentials: true },
     );
   }
+  updateAssessment(id: string, assessment: Assessment): Observable<Assessment> {
+    return this.httpClient.put<Assessment>(
+      `${this.baseUrl}/api/assessment/${id}`,
+      assessment,
+      { withCredentials: true },
+    );
+  }
+  deleteAssessment(id: string): Observable<Assessment> {
+    return this.httpClient.delete<Assessment>(
+      `${this.baseUrl}/api/assessment/${id}`,
+      { withCredentials: true },
+    );
+  }
 }
