@@ -1,7 +1,7 @@
 <div class="mt-4 bg-white" *ngIf="assessment">
   <div class="m-auto w-[90vw] px-[2rem] py-4">
     <div class="flex items-center justify-between">
-      <div class="flex gap-2">
+      <div class="flex md:gap-2">
         <button
           class="mr-2 rounded-md bg-[#EDEDED] px-4 py-2.5"
           (click)="backClicked()">
@@ -13,7 +13,7 @@
             {{ assessment.title }}
           </h2>
           <div
-            class="flex gap-4 !font-openSans !text-[14px] !font-[400] !leading-[20px]">
+            class="flex !font-openSans !text-[14px] !font-[400] !leading-[20px] md:gap-4">
             <p>{{ assessment.questions.length }} questions</p>
             |
             <p>
@@ -26,7 +26,7 @@
           </div>
         </div>
       </div>
-      <div class="flex gap-4">
+      <div class="flex md:gap-4">
         <button
           class="mr-2 rounded-md bg-[#EDEDED] px-4 py-2.5"
           (click)="editAssessment()">
@@ -47,13 +47,13 @@
 </div>
 <div class="flex min-h-full bg-[#F5F6F6]">
   <div class="relative mx-auto w-[90vw] px-[2rem]">
-    <div class="mt-8 h-[50vh] rounded-md bg-white px-4 py-5 sm:px-6">
+    <div class="mt-8 rounded-md bg-white px-4 py-5 sm:px-6 md:h-[42vh]">
       <h3 class="!font-openSans !text-[14px] !font-[700] !leading-[20px]">
         INVITE CANDIDATES
       </h3>
 
-      <div class="flex h-[90%]">
-        <div class="basis-[50%] border-r">
+      <div class="flex h-[90%] flex-col gap-2 md:flex-row">
+        <div class="md:basis-[50%] md:border-r">
           <h4 class="!font-openSans !text-[14px] !font-[700] !leading-[20px]">
             By public link:
           </h4>
@@ -66,7 +66,7 @@
             </button>
           </div>
         </div>
-        <div class="basis-[50%]">
+        <div class="md:basis-[50%]">
           <div class="m-auto w-[90%]">
             <h4 class="!font-openSans !text-[14px] !font-[700] !leading-[20px]">
               By email:
@@ -100,6 +100,14 @@
 
     <div class="mb-8 mt-8 min-h-[40vh] rounded-md bg-white px-4 py-5 sm:px-6">
       <!-- candidates goes here -->
+      <h3 class="!font-openSans !text-[14px] !font-[700] !leading-[20px]">
+        CANDIDATES
+      </h3>
+      <app-candidate-table
+        [candidates]="candidates"
+        (deleteCandidateEmitter)="
+          deleteCandidate($event)
+        "></app-candidate-table>
     </div>
   </div>
 </div>

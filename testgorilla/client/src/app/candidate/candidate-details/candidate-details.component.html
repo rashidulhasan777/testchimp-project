@@ -1,0 +1,147 @@
+<div class="flex min-h-screen justify-center bg-[#F5F6F6]">
+  <div class="my-20 w-[85vw] rounded-md bg-white px-[2rem]">
+    <div *ngIf="candidate" class="p-12">
+      <div>
+        <h2 class="!text[20px] !font-openSans !font-[700] !leading-[28px]">
+          Assessment &nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="font-[300]">{{ candidate.assessment[0].title }}</span>
+        </h2>
+      </div>
+      <div class="flex flex-col items-center justify-between md:flex-row">
+        <h3 class="!text[16px] !m-0 !font-openSans !font-[700]">
+          {{ candidate.name }}
+        </h3>
+        <p
+          matTooltip="Click to copy"
+          (click)="copyEmail()"
+          class="underline hover:cursor-pointer">
+          {{ candidate.email }}
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-col gap-4 md:flex-row">
+        <div class="md:flex-1">
+          <div
+            class="mb-8 h-[10rem] w-[15rem] overflow-hidden rounded-md bg-[#f3f3f3] shadow-md">
+            <div class="bg-[#44aa97]">
+              <h2
+                class="!py-2 text-center !text-[2rem] !font-[900] leading-[3rem] text-white">
+                SCORE
+              </h2>
+            </div>
+            <div
+              class="text-center text-[4rem] font-[700] leading-[5rem] text-[#44aa97]">
+              {{ candidate.score }}{{ candidate.score ? '%' : '' }}
+            </div>
+            <div></div>
+          </div>
+          <p class="font-openSans text-[16px] font-[700] leading-[22px]">
+            Completed
+          </p>
+          <p class="!mb-4 font-openSans text-[14px] font-[400] leading-[20px]">
+            {{ candidate.createdAt | date }}
+          </p>
+          <p class="font-openSans text-[16px] font-[700] leading-[22px]">
+            Extra time breakdown
+          </p>
+          <p class="!mb-4 font-openSans text-[14px] font-[400] leading-[20px]">
+            No extra time was granted to this candidate
+          </p>
+          <p class="font-openSans text-[16px] font-[700] leading-[22px]">
+            Source
+          </p>
+          <p class="!mb-4 font-openSans text-[14px] font-[400] leading-[20px]">
+            General public link
+          </p>
+          <!-- <p class="font-openSans font-[700] text-[16px] leading-[22px]">Score</p>
+          <p class="!mb-4 font-openSans font-[400] text-[14px] leading-[20px]">{{ candidate.score }}</p> -->
+        </div>
+        <div class="md:flex-1">
+          <p class="!mb-4 font-openSans text-[16px] font-[700] leading-[22px]">
+            Anti cheating monitor
+          </p>
+          <div class="mb-4 flex justify-between">
+            <p class="font-openSans text-[14px] font-[400] leading-[20px]">
+              Device used
+            </p>
+            <p class="font-openSans text-[14px] font-[700] leading-[20px]">
+              {{ candidate.device }}
+            </p>
+          </div>
+          <div class="mb-4 flex justify-between">
+            <p class="font-openSans text-[14px] font-[400] leading-[20px]">
+              Browser
+            </p>
+            <p class="font-openSans text-[14px] font-[700] leading-[20px]">
+              {{ candidate.browser }}
+            </p>
+          </div>
+          <div class="mb-4 flex justify-between">
+            <p class="font-openSans text-[14px] font-[400] leading-[20px]">
+              Location
+            </p>
+            <p class="font-openSans text-[14px] font-[700] leading-[20px]">
+              {{ candidate.location }}
+            </p>
+          </div>
+          <div class="mb-4 flex justify-between">
+            <p class="font-openSans text-[14px] font-[400] leading-[20px]">
+              IP address
+            </p>
+            <p class="font-openSans text-[14px] font-[700] leading-[20px]">
+              {{ candidate.ipAddress }}
+            </p>
+          </div>
+          <div class="mb-2 flex justify-between">
+            <p class="font-openSans text-[14px] font-[400] leading-[20px]">
+              Filled out only once from IP address?
+            </p>
+            <p
+              [ngClass]="candidate.ipAddress ? 'bg-[#46A997]' : 'bg-[#CB7B7A]'"
+              class="px-2 py-1 font-openSans text-[14px] font-[700] leading-[20px] text-white">
+              {{ candidate.ipAddress ? 'Yes' : 'No&nbsp;' }}
+            </p>
+          </div>
+
+          <div class="mb-2 flex justify-between">
+            <p class="font-openSans text-[14px] font-[400] leading-[20px]">
+              Webcam enabled?
+            </p>
+            <p
+              [ngClass]="
+                candidate.images.length > 0 ? 'bg-[#46A997]' : 'bg-[#CB7B7A]'
+              "
+              class="px-2 py-1 font-openSans text-[14px] font-[700] leading-[20px] text-white">
+              {{ candidate.images.length > 0 ? 'Yes' : 'No&nbsp;' }}
+            </p>
+          </div>
+          <div class="mb-8 flex justify-between">
+            <p class="font-openSans text-[14px] font-[400] leading-[20px]">
+              Mouse always in assessment window?
+            </p>
+            <p
+              [ngClass]="!candidate.mouseLeft ? 'bg-[#46A997]' : 'bg-[#CB7B7A]'"
+              class="px-2 py-1 font-openSans text-[14px] font-[700] leading-[20px] text-white">
+              {{ !candidate.mouseLeft ? 'Yes' : 'No&nbsp;' }}
+            </p>
+          </div>
+          <div
+            *ngIf="candidate.images.length > 0"
+            class="flex w-full items-center justify-center gap-4">
+            <mat-icon (click)="changeImage(false)" class="hover:cursor-pointer">
+              arrow_back_ios
+            </mat-icon>
+            <img
+              [src]="candidate.images[currentImageIndex]"
+              alt=""
+              width="400"
+              height="300" />
+            <mat-icon (click)="changeImage(true)" class="hover:cursor-pointer">
+              arrow_forward_ios
+            </mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

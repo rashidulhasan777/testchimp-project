@@ -1,18 +1,22 @@
-import { Assessment } from './assessment';
-import { Question } from './question';
-import { User } from './user';
-
 export interface TestResult {
-  question: Question;
-  answer: string;
+  question: string;
+  correctAnswer: string;
+  givenAnswer: string;
 }
 
 export interface Candidate {
+  _id?: string;
   name: string;
   email: string;
-  phoneNumber: string;
+  images: string[];
+  browser: string;
+  device: string;
+  location: string;
+  ipAddress: string;
+  assignedBy: string;
+  assessment: string | any[];
+  mouseLeft: boolean;
+  score: number;
   submittedTestResults: TestResult[];
-  assignedBy: User;
-  createdAt: string;
-  assessment: Assessment;
+  createdAt?: string;
 }

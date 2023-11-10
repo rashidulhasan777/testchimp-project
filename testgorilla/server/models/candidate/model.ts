@@ -2,17 +2,24 @@ import { Schema, model } from 'mongoose';
 
 const TestResultSchema = new Schema({
   question: { type: Schema.Types.ObjectId, ref: 'Question' },
-  answer: { type: String, required: true },
+  correctAnswer: { type: String, required: true },
+  givenAnswer: { type: String, required: true },
 });
 
 const CandidateSchema = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
-  phoneNumber: { type: String, required: true },
-  submittedTestResults: [{ type: TestResultSchema }],
+  images: [{ type: String }],
+  browser: { type: String },
+  device: { type: String },
+  location: { type: String },
+  ipAddress: { type: String },
   assignedBy: { type: Schema.Types.ObjectId, ref: 'User' },
-  createdAt: { type: Date, required: true, default: Date.now },
   assessment: { type: Schema.Types.ObjectId, ref: 'Assessment' },
+  submittedTestResults: [{ type: TestResultSchema }],
+  score: { type: Number },
+  mouseLeft: { type: Boolean },
+  createdAt: { type: Date, required: true, default: Date.now },
 });
 
 const Candidate = model('Candidate', CandidateSchema);

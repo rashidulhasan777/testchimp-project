@@ -9,10 +9,13 @@ import { Question } from '../interfaces/question';
 export class QuestionService {
   baseUrl = 'http://localhost:3000';
   constructor(private httpClient: HttpClient) {}
-  getQuestions(): Observable<Question[]> {
-    return this.httpClient.get<Question[]>(`${this.baseUrl}/api/question`, {
-      withCredentials: true,
-    });
+  getQuestions(page: number, limit: number): Observable<any> {
+    return this.httpClient.get<any>(
+      `${this.baseUrl}/api/question/?page=${page}&limit=${limit}`,
+      {
+        withCredentials: true,
+      },
+    );
   }
   getQuestionById(id: string): Observable<Question> {
     return this.httpClient.get<Question>(`${this.baseUrl}/api/question/${id}`, {

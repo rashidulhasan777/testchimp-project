@@ -47,6 +47,11 @@ app-confirm-popup {
   width: 100%;
 }
 
+.question-card {
+  width: 500px;
+  height: auto;
+}
+
 /*
 .example-list {
   width: 1000px;

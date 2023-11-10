@@ -41,4 +41,9 @@ export class UserService {
     const payload: User = jwtDecode(jwtToken as string);
     return payload.role;
   }
+  getUserID(): string | undefined {
+    const jwtToken = this.cookieService.get('jwtToken');
+    const payload: User = jwtDecode(jwtToken as string);
+    return payload.id;
+  }
 }

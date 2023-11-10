@@ -8,7 +8,7 @@ export interface Category {
   skills: string[];
   level: string;
   type: string;
-  duration?: number;
+  time?: number;
   relevantRoles: string;
   createdBy?: User;
   createdAt?: string;

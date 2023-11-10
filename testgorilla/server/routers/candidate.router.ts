@@ -8,13 +8,17 @@ import {
   getAllCandidatesController,
   getCandidateByIdController,
   updateCandidateByIdController,
+  getCandidateByAssessmentIdController,
+  getCandidateByAssignedByIdController,
 } from '../controllers/candidate.controller';
 
 const router = express.Router();
 
-// Assessment Routes - /api/assessment
+// Assessment Routes - /api/candidate
 router.get('/', getAllCandidatesController);
 router.get('/:id', getCandidateByIdController);
+router.get('/assessment/:assessmentId', getCandidateByAssessmentIdController);
+router.get('/assignedby/:assignedById', getCandidateByAssignedByIdController);
 
 router.post(
   '/',
@@ -26,8 +30,8 @@ router.post(
       .withMessage('Email is required')
       .isEmail()
       .withMessage('Email is invalid'),
-    body('phone').trim().notEmpty().withMessage('Phone is required'),
     body('assignedBy').trim().notEmpty().withMessage('Assigned By is required'),
+    body('assessment').trim().notEmpty().withMessage('Assessment is required'),
     validationMiddleware,
   ],
   createCandidateController,
@@ -43,8 +47,8 @@ router.put(
       .withMessage('Email is required')
       .isEmail()
       .withMessage('Email is invalid'),
-    body('phone').trim().notEmpty().withMessage('Phone is required'),
     body('assignedBy').trim().notEmpty().withMessage('Assigned By is required'),
+    body('assessment').trim().notEmpty().withMessage('Assessment is required'),
     validationMiddleware,
   ],
   updateCandidateByIdController,

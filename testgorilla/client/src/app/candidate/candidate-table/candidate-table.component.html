@@ -1,0 +1,92 @@
+<div
+  [ngClass]="candidates.length > 0 ? '' : 'hidden'"
+  class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+  <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+    <div
+      class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+      <table class="min-w-full divide-y divide-gray-300">
+        <thead class="bg-gray-50">
+          <tr>
+            <th
+              scope="col"
+              class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+              Name
+            </th>
+            <th
+              scope="col"
+              class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+              Email
+            </th>
+            <th
+              scope="col"
+              class="flex items-center px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+              <div>Avg. % Score</div>
+              <div class="flex flex-col">
+                <!-- <mat-icon class="!w-[18px] !h-[14px] flex items-center justify-center">arrow_drop_up</mat-icon><mat-icon class="!w-[18px] !h-[14px] flex items-center justify-center">arrow_drop_down</mat-icon> -->
+                <mat-icon
+                  (click)="clickUp()"
+                  matTooltip="Descending sort"
+                  class="hover:cursor-pointer">
+                  arrow_drop_up
+                </mat-icon>
+                <mat-icon
+                  (click)="clickDown()"
+                  matTooltip="Ascending sort"
+                  class="hover:cursor-pointer">
+                  arrow_drop_down
+                </mat-icon>
+              </div>
+            </th>
+            <th
+              scope="col"
+              class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+              Last Activity
+            </th>
+            <th
+              scope="col"
+              class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"></th>
+
+            <!-- <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Actions</th> -->
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 bg-white">
+          <tr
+            [routerLink]="['/dashboard/candidates', candidate._id]"
+            *ngFor="let candidate of candidates"
+            class="hover:cursor-pointer hover:bg-[#F0D6BB]">
+            <td
+              class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+              {{ candidate.name }}
+            </td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+              {{ candidate.email }}
+            </td>
+
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+              {{ candidate.score }}{{ candidate.score ? '%' : '' }}
+            </td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+              {{ candidate.createdAt | date }}
+            </td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+              <i
+                (click)="
+                  deleteCandidate(candidate._id); $event.stopPropagation()
+                "
+                matTooltip="Delete"
+                class="fa-regular fa-trash-can hover:cursor-pointer"></i>
+            </td>
+
+            <!-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 flex justify-center">
+                <button>
+                  <i class="fa-solid fa-ellipsis-vertical"></i>
+                </button>
+              </td> -->
+          </tr>
+
+          <!-- More people... -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

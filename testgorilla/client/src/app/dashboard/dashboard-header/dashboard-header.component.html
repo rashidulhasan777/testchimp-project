@@ -1,7 +1,7 @@
-<nav class="bg-white shadow">
-  <div class="mx-auto max-w-[90vw] px-2 sm:px-6 lg:px-8">
+<nav class="bg-white shadow-lg">
+  <div class="mx-auto max-w-[90vw] px-2 md:px-6 lg:px-8">
     <div class="relative flex h-16 justify-between">
-      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+      <div class="absolute inset-y-0 left-0 flex items-center md:hidden">
         <!-- Mobile menu button -->
         <button
           type="button"
@@ -50,14 +50,15 @@
         </button>
       </div>
       <div
-        class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+        class="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
         <div class="flex flex-shrink-0 items-center">
           <img
-            class="h-8 w-auto"
+            routerLink="/dashboard/assessments"
+            class="h-8 w-auto hover:cursor-pointer"
             src="../../assets/logo-testgorilla.svg"
             alt="Your Company" />
         </div>
-        <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+        <div class="hidden md:ml-6 md:flex md:space-x-8">
           <!-- Current: "border-[#44aa97]  text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
           <a
             routerLink="/dashboard/assessments"
@@ -70,7 +71,7 @@
             Assessments
           </a>
           <a
-            href="#"
+            routerLink="/dashboard/candidates"
             [ngClass]="
               activeMenu === 'candidates'
                 ? 'border-[#44aa97]  text-gray-900'
@@ -102,7 +103,7 @@
         </div>
       </div>
       <div
-        class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+        class="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
         <!-- Profile dropdown -->
         <div class="relative ml-3">
           <div>
@@ -115,7 +116,7 @@
               <span class="absolute -inset-1.5"></span>
               <span class="sr-only">Open user menu</span>
               <span class="text-[14px] font-[400] leading-[18px]" *ngIf="user">
-                {{ user.firstName + ' ' + user.lastName }}
+                {{ user.firstName }}
                 <i class="fa-solid fa-angle-down"></i>
               </span>
             </button>
@@ -160,11 +161,11 @@
   </div>
 
   <!-- Mobile menu, show/hide based on menu state. -->
-  <div class="hidden sm:hidden" id="mobile-menu">
+  <div class="hidden md:hidden" id="mobile-menu">
     <div class="space-y-1 pb-4 pt-2">
       <!-- Current: "bg-indigo-50 border-[#44aa97]  text-[#31766A] ", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
       <a
-        href="#"
+        routerLink="/dashboard/assessments"
         [ngClass]="
           activeMenu === 'assessments'
             ? 'border-[#44aa97] bg-indigo-50  text-[#31766A] '
@@ -174,7 +175,7 @@
         Assessments
       </a>
       <a
-        href="#"
+        routerLink="/dashboard/candidates"
         [ngClass]="
           activeMenu === 'candidates'
             ? 'border-[#44aa97] bg-indigo-50  text-[#31766A] '

@@ -4,6 +4,7 @@ import {
   createAssessment,
   deleteAssessmentById,
   getAllAssessments,
+  getAssessmentByCreatedBy,
   getAssessmentById,
   updateAssessmentById,
 } from '../models/assessment/query';
@@ -21,6 +22,19 @@ const getAssessmentByIdController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const assessment = await getAssessmentById(id);
+    res.status(200).json(assessment);
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const getAssessmentByCreatedByController = async (
+  req: Request,
+  res: Response,
+) => {
+  try {
+    const { id } = req.params;
+    const assessment = await getAssessmentByCreatedBy(id);
     res.status(200).json(assessment);
   } catch (error: any) {
     res.status(500).json({ error: error.message });
@@ -72,6 +86,7 @@ export {
   createAssessmentController,
   deleteAssessmentByIdController,
   getAllAssessmentsController,
+  getAssessmentByCreatedByController,
   getAssessmentByIdController,
   updateAssessmentByIdController,
 };

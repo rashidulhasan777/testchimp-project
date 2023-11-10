@@ -8,6 +8,7 @@ import {
   getAllAssessmentsController,
   getAssessmentByIdController,
   updateAssessmentByIdController,
+  getAssessmentByCreatedByController,
 } from '../controllers/assessment.controller';
 
 const router = express.Router();
@@ -15,6 +16,7 @@ const router = express.Router();
 // Assessment Routes - /api/assessment
 router.get('/', getAllAssessmentsController);
 router.get('/:id', getAssessmentByIdController);
+router.get('/createdBy/:id', getAssessmentByCreatedByController);
 
 router.post(
   '/',

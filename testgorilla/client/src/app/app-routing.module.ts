@@ -15,6 +15,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { CategoryPreviewComponent } from './dashboard/category/category-preview/category-preview.component';
 import { AssessmentDetailsComponent } from './dashboard/assessment/assessment-details/assessment-details.component';
 import { TesttakerComponent } from './testtaker/testtaker.component';
+import { CandidateComponent } from './candidate/candidate.component';
+import { CandidateDetailsComponent } from './candidate/candidate-details/candidate-details.component';
 
 const routes: Routes = [
   {
@@ -80,6 +82,14 @@ const routes: Routes = [
       {
         path: 'preview/:id',
         component: CategoryPreviewComponent,
+      },
+      {
+        path: 'candidates',
+        component: CandidateComponent,
+      },
+      {
+        path: 'candidates/:id',
+        component: CandidateDetailsComponent,
       },
     ],
   },

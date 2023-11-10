@@ -27,6 +27,18 @@
               <mat-label>Job role</mat-label>
               <input matInput formControlName="jobRole" />
             </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Choose a deadline</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker"
+                formControlName="deadline" />
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
           </div>
         </mat-step>
         <mat-step label="Select tests">
@@ -66,6 +78,7 @@
 
           <div class="mt-8 flex flex-wrap gap-4">
             <app-category-card
+              class="sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 2xl:w-1/6"
               parent="assessment"
               (addButtonClickEvent)="onCategoryAddButtonClick($event)"
               [category]="category"
@@ -136,6 +149,15 @@
                     <p>{{ questionForm.value.assessmentName?.jobRole }}</p>
                   </div>
                   <hr />
+                  <div
+                    *ngIf="questionForm.value.assessmentName?.deadline"
+                    class="flex justify-between">
+                    <h3>Deadline</h3>
+                    <p>
+                      {{ questionForm.value.assessmentName?.deadline | date }}
+                    </p>
+                  </div>
+                  <hr *ngIf="questionForm.value.assessmentName?.deadline" />
                 </div>
 
                 <table class="min-w-full divide-y divide-gray-300">
@@ -166,7 +188,7 @@
                       </td>
                       <td
                         class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {{ category.duration | plural }}
+                        {{ category.time | plural }}
                       </td>
                       <td
                         class="flex items-center whitespace-nowrap px-3 py-4 text-sm text-gray-500">

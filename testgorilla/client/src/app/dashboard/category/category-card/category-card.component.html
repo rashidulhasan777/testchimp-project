@@ -11,8 +11,7 @@
   </div>
 </div> -->
 
-<mat-card
-  class="mb-4 flex h-[22rem] w-[16rem] flex-col justify-between text-[#252525]">
+<mat-card class="mb-4 flex h-[22rem] flex-col justify-between text-[#252525]">
   <div>
     <mat-card-header class="">
       <mat-card-title
@@ -24,8 +23,8 @@
     </mat-card-header>
     <mat-card-content
       class="!font-openSans !text-[14px] !font-[400] !leading-[20px]">
-      {{ category.shortDescription | slice: 0 : 250
-      }}{{ category.shortDescription.length > 250 ? '...' : '' }}
+      {{ category.shortDescription | slice: 0 : 200
+      }}{{ category.shortDescription.length > 200 ? '...' : '' }}
     </mat-card-content>
   </div>
   <div class="mb-2 flex items-center justify-between">

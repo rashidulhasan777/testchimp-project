@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Andada-Regular
+font link: https://fonts.google.com/specimen/Andada
+font author: Huerta Tipográfica
+font author site: https://www.huertatipografica.com/en
+
+
+icon designer: Larisa Skosyrska
+icon designer link: /Lara.Skosyrska
+        
+{"bg":"transparent","icon-gradient-0":"#968ABF","icon-gradient-1":"#E4A8AA","font":"#000000","slogan":"#141414"}
+      

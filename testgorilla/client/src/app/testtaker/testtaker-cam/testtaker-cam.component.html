@@ -1,0 +1,93 @@
+<div *ngIf="!onlyWebCam" class="flex gap-4">
+  <div class="flex flex-1 flex-col gap-4 p-12">
+    <h2>Camera setup</h2>
+    <mat-divider class="first"></mat-divider>
+    <p>
+      We use camera images to ensure fairness for everyone. Make sure that you
+      are in front of your camera
+    </p>
+    <mat-divider></mat-divider>
+    <div class="flex items-center justify-between">
+      <div>
+        <div class="flex items-center gap-2">
+          <mat-icon>videocam</mat-icon>
+          <h3 class="!m-0 !font-openSans !text-[16px] !font-bold">Camera:</h3>
+        </div>
+        <p *ngIf="activeDeviceName">{{ activeDeviceName }}</p>
+      </div>
+      <div matTooltip="Change webcam" *ngIf="multipleWebcamsAvailable">
+        <button (click)="showNextWebcam(false)">
+          <mat-icon>navigate_before</mat-icon>
+        </button>
+        <button (click)="showNextWebcam(true)">
+          <mat-icon>navigate_next</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-1 flex-col items-center gap-4 p-12">
+    <div class="h-[300px] w-[400px]">
+      <webcam
+        [height]="300"
+        [width]="400"
+        [trigger]="triggerObservable"
+        (imageCapture)="handleImage($event)"
+        *ngIf="showWebcam"
+        [allowCameraSwitch]="allowCameraSwitch"
+        [switchCamera]="nextWebcamObservable"
+        [imageQuality]="1"
+        (cameraSwitched)="cameraWasSwitched($event)"
+        (initError)="handleInitError($event)"></webcam>
+      <h4 *ngIf="errors.length > 0">Error:</h4>
+      <ul *ngFor="let error of errors">
+        <li>{{ error.message }}</li>
+      </ul>
+    </div>
+    <div class="flex max-w-[500px] flex-col gap-2 rounded-md bg-[#C8D7DE] p-8">
+      <h3 class="!m-0">Trouble with your webcam?</h3>
+      <p>
+        Ensure you have granted permission for your browser to access your
+        camera.
+      </p>
+      <p>
+        Ensure you are using a
+        <a href="">supported browser.</a>
+      </p>
+      <p>
+        If you have multiple camera devices, ensure you have given your browser
+        and our website permission to the right device.
+      </p>
+      <p>
+        Try launching the assessment in incognito mode or in a private window.
+      </p>
+      <p>Ensure your camera drivers and web browser are up to date.</p>
+      <p>
+        Restart your device and try accessing the assessment again using the
+        invitation link.
+      </p>
+    </div>
+    <div class="w-[90%] pr-4 text-right">
+      <button
+        (click)="setupDone()"
+        class="rounded bg-[#44aa97] px-4 py-2 font-bold text-white hover:bg-[#3ea18f]"
+        matStepperNext>
+        Next >
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="onlyWebCam">
+  <webcam
+    class="hidden"
+    [height]="300"
+    [width]="400"
+    [trigger]="triggerObservable"
+    (imageCapture)="handleImage($event)"
+    *ngIf="showWebcam"
+    [allowCameraSwitch]="allowCameraSwitch"
+    [switchCamera]="nextWebcamObservable"
+    [imageQuality]="1"
+    (cameraSwitched)="cameraWasSwitched($event)"
+    (initError)="handleInitError($event)"></webcam>
+</div>

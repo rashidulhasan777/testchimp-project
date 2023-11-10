@@ -5,22 +5,24 @@
 </div>
 
 <!-- Hero section start -->
-<div class="relative flex w-[100vw] overflow-hidden pt-[5rem]">
+<div
+  class="relative flex w-[100vw] flex-col overflow-hidden pt-[3.5rem] sm:flex-row">
   <div class="basis-[50%] bg-[#226679] text-[#EDEDED]">
-    <div class="m-auto mt-32 w-[80%]">
-      <h1 class="text-[40px] font-[700] leading-[50px] text-[#FFFFFF]">
-        TestGorilla works. Resumes
-        <br />
+    <div class="m-auto mt-16 w-[80%] sm:mt-32">
+      <h1 class="text-[2.5rem] font-[700] leading-[3.125rem] text-[#FFFFFF]">
+        TestChimp works. Resumes
+        <br class="hidden sm:block" />
         don't.
       </h1>
-      <p class="mb-4 mt-4 text-[18px] font-[300] leading-[28px] text-white">
+      <p
+        class="mb-4 mt-4 text-[1.125rem] font-[300] leading-[1.75rem] text-white">
         Our talent assessments screen and identify the best candidates and make
         your hiring decisions faster, easier, and bias-free.
       </p>
-      <div class="mb-12 mt-12">
+      <div class="mb-12 mt-12 flex w-1/2 flex-col sm:w-auto sm:flex-row">
         <a
           routerLink="/signup"
-          class="mr-4 rounded-lg bg-[#FFFFFF] p-4 text-[14px] font-[600] leading-[24px] text-black hover:bg-[#EDEDED]">
+          class="mb-4 rounded-lg bg-[#FFFFFF] p-4 text-[14px] font-[600] leading-[24px] text-black hover:bg-[#EDEDED] sm:mb-auto sm:mr-4">
           Try for free!
         </a>
         <a
@@ -28,8 +30,11 @@
           Talk to sales
         </a>
       </div>
-      <div class="mb-32 flex gap-4 font-light">
-        <img src="../../assets/hero-leader.svg" alt="" />
+      <div class="mb-32 flex flex-col gap-4 font-light sm:flex-row">
+        <img
+          src="../../assets/hero-leader.svg"
+          alt=""
+          class="w-[200px] sm:h-auto sm:w-full" />
         <div class="text-[18px] font-[300] leading-[28px] text-white">
           <p class="mb-2">Rated #1 in talent assessments</p>
           <p>Top 100 fastest-growing software globally</p>
@@ -44,13 +49,14 @@
 <!-- Hero section end -->
 
 <!-- which companies uses testgorilla section start -->
-<div class="flex justify-center">
+<div class="mt-12 flex justify-center">
   <div class="w-[70vw]">
     <h1
       class="mb-12 mt-32 text-center text-[40px] font-bold leading-[50px] text-black">
-      Join the 10,400+ companies replacing resumes with TestGorilla.
+      Join the 10,400+ companies replacing resumes with TestChimp.
     </h1>
-    <div class="mb-32 flex items-center justify-between">
+    <div
+      class="mb-12 flex flex-col items-center justify-between gap-4 sm:flex-row">
       <img class="h-auto w-[100px]" src="../../assets/company-hm.png" alt="" />
       <!-- <img class="w-[100px] h-12" src="../../assets/company-revolut.jpeg" alt=""> -->
       <img
@@ -66,12 +72,12 @@
 
 <!-- barometer for success section start -->
 <div class="bg-[#F5F6F6] pb-16 pt-16">
-  <div class="m-auto flex w-[90vw]">
+  <div class="m-auto flex w-[90vw] flex-col sm:flex-row">
     <div class="flex basis-[50%] justify-center">
       <img class="h-96 w-auto" src="../../assets/technologies.webp" alt="" />
     </div>
     <div class="basis-[50%]">
-      <div class="m-auto w-[80%]">
+      <div class="m-auto sm:w-[80%]">
         <h2 class="mb-[2.5rem] text-[40px] font-[700] leading-[50px]">
           A barometer for job success.
         </h2>
@@ -102,12 +108,12 @@
 
 <!-- Quality time section start -->
 <div class="bg-[#CBD6CB]">
-  <div class="m-auto flex w-[90vw]">
+  <div class="m-auto flex w-[90vw] flex-col sm:flex-row">
     <div class="flex basis-[50%] flex-col items-center justify-center">
-      <div class="w-[80%]">
+      <div class="w-[80%] py-12">
         <h2 class="mb-[1.5rem] text-[40px] font-[700] leading-[50px]">
           Quality time for quality
-          <br />
+          <br class="hidden sm:block" />
           candidates.
         </h2>
         <p class="mb-[1.5rem] text-[18px] font-[300] leading-[28px]">
@@ -125,7 +131,7 @@
         </p>
       </div>
     </div>
-    <div class="basis-[50%]">
+    <div class="hidden basis-[50%] sm:block">
       <img
         class="relative z-10 ml-[-5rem] mt-12"
         src="../../assets/score1.webp"
@@ -141,7 +147,7 @@
 
 <!-- bias section start -->
 <div class="bg-[#F5F6F6]">
-  <div class="m-auto flex w-[90vw] gap-8">
+  <div class="m-auto flex w-[90vw] flex-col gap-8 py-12 sm:flex-row">
     <div class="mt-12 basis-[50%]">
       <img src="../../assets/bias.png" alt="" />
     </div>
@@ -149,15 +155,15 @@
       <div class="">
         <h2 class="mb-10 text-[40px] font-[700] leading-[50px]">
           Say goodbye to unconscious
-          <br />
+          <br class="hidden sm:block" />
           bias.
         </h2>
         <p class="mb-6 text-[18px] font-[300] leading-[28px]">
           Diverse teams perform better.
         </p>
         <p class="mb-6 text-[18px] font-[300] leading-[28px]">
-          With TestGorilla, you give all applicants an equal, unbiased
-          opportunity to showcase themselves.
+          With TestChimp, you give all applicants an equal, unbiased opportunity
+          to showcase themselves.
         </p>
         <p class="mb-6 text-[18px] font-[300] leading-[28px]">
           This ensures you get the best talent from all walks of life.
@@ -170,12 +176,12 @@
 
 <!-- candidate experience section start -->
 <div class="bg-[#F0D6BB]">
-  <div class="m-auto flex w-[90vw]">
+  <div class="m-auto flex w-[90vw] flex-col py-12 sm:flex-row">
     <div class="flex basis-[50%] items-center justify-center">
       <div>
         <h2 class="mb-10 text-[40px] font-[700] leading-[50px]">
           Offer a positive candidate
-          <br />
+          <br class="hidden sm:block" />
           experience.
         </h2>
         <p class="mb-6 text-[18px] font-[300] leading-[28px]">
@@ -200,7 +206,7 @@
 
 <!-- connection section start -->
 <div class="bg-[#C8D7DE]">
-  <div class="m-auto flex w-[90vw] gap-8">
+  <div class="m-auto flex w-[90vw] flex-col gap-8 py-12 sm:flex-row">
     <div class="mb-16 mt-16 basis-[50%]">
       <img src="../../assets/connection.webp" alt="" />
     </div>
@@ -215,11 +221,11 @@
           important decisions – and not just their gut feeling.
         </p>
         <p class="mb-6 text-[18px] font-[300] leading-[28px]">
-          With TestGorilla, you’ll lead the shift to a more professional and
+          With TestChimp, you’ll lead the shift to a more professional and
           data-focused HR culture in your company.
         </p>
         <a
-          class="mt-4 rounded-lg border-2 border-black p-4 text-[14px] font-[600] leading-[24px]"
+          class="mt-4 inline-block rounded-lg border-2 border-black p-4 text-[14px] font-[600] leading-[24px]"
           href="">
           Learn more
         </a>
@@ -233,14 +239,14 @@
 <div class="bg-[#FFFFFF]">
   <div class="m-auto w-[80vw] pb-12 pt-12 text-center">
     <h2 class="mb-10 text-[40px] font-[700] leading-[50px]">
-      Watch what TestGorilla can do for you.
+      Watch what TestChimp can do for you.
     </h2>
     <div class="text-center">
       <iframe
-        width="1480"
-        height="600"
+        width="100%"
+        min-height="500px"
         src="https://www.youtube.com/embed/jberA05ZORE"
-        title="A guide to pre employment testing with TestGorilla"
+        title="A guide to pre employment testing with TestChimp"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
@@ -251,14 +257,14 @@
 
 <!-- talent-priceless section start -->
 <div class="bg-[#F5F6F6]">
-  <div class="m-auto w-[80vw]">
-    <div class="pt-16 text-center">
+  <div class="m-auto w-[80vw] py-12">
+    <div class="text-center">
       <h2 class="mb-10 text-[40px] font-[700] leading-[50px]">
         Top talent is priceless. We make finding it affordable.
       </h2>
       <p class="mb-6 text-[18px] font-[300] leading-[28px]">
         A time-consuming screening process costs you a lot. Painful mis-hires
-        cost you much, much more. With TestGorilla, you
+        cost you much, much more. With TestChimp, you
         <br />
         avoid all of this and see a huge return on investment every single year.
       </p>
@@ -266,14 +272,14 @@
         Start screening with us today on our free plan.
       </p>
     </div>
-    <div class="mt-12 pb-16 text-center">
+    <div class="mt-12 flex justify-center text-center">
       <a
-        class="mr-8 mt-4 rounded-lg border-2 border-black p-4 text-[14px] font-[600] leading-[24px] hover:bg-[#EDEDED]">
+        class="mr-8 rounded-lg border-2 border-black px-3.5 py-1.5 text-[14px] font-[600] leading-[24px] hover:bg-[#EDEDED]">
         Talk to us
       </a>
       <a
         routerLink="/signup"
-        class="rounded-lg bg-[#44aa97] p-4 text-[14px] font-[600] leading-[24px] text-white hover:bg-[#31766A]">
+        class="rounded-lg bg-[#44aa97] px-3.5 py-1.5 text-[14px] font-[600] leading-[24px] text-white hover:bg-[#31766A]">
         Sign up free >
       </a>
     </div>
@@ -284,13 +290,14 @@
 <!-- footer section -->
 
 <div class="bg-[#EDEDED] text-[16px] font-[600] leading-[28px]">
-  <div class="m-auto flex w-[90vw] items-center justify-between pb-12 pt-12">
+  <div
+    class="m-auto flex w-[90vw] flex-col items-center justify-between pb-12 pt-12 text-center sm:flex-row">
     <div class="flex flex-col">
       <img src="../../assets/logo-testgorilla.svg" alt="" />
-      <p>© TestGorilla 2023. All rights reserved.</p>
+      <p>© TestChimp 2023. All rights reserved.</p>
     </div>
     <div class="flex flex-col">
-      <a href="">
+      <a href="" class="">
         Help center
         <span class="text-[#44aa97]">></span>
       </a>

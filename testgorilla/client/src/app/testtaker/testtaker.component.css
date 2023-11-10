@@ -1,3 +1,9 @@
 :host ::ng-deep .mat-horizontal-stepper-header-container {
   display: none;
 }
+.mat-divider {
+  --mat-divider-width: 2px;
+}
+.mat-divider.first {
+  border-top-color: #44aa97;
+}

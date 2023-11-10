@@ -1,14 +1,14 @@
-<div class="h-full bg-[#F5F6F6]">
-  <div class="flex h-full w-full items-center justify-center">
+<div class="min-h-full bg-[#F5F6F6] pt-12">
+  <div class="flex min-h-full w-full items-center justify-center">
     <div
       *ngIf="question"
-      class="flex h-[75vh] w-[75vw] rounded-md bg-white text-justify font-openSans text-[16px] font-[400] leading-[23px]">
-      <div class="w-[50%]">
+      class="flex min-h-[75vh] w-[75vw] flex-col rounded-md bg-white text-justify font-openSans text-[16px] font-[400] leading-[23px] md:flex-row">
+      <div class="w-full md:w-[50%]">
         <div class="p-12" [innerHTML]="question.title">
           <!-- {{ question.title }} -->
         </div>
       </div>
-      <div class="w-[50%]">
+      <div class="w-full md:w-[50%]">
         <div class="p-12">
           <p class="!mb-4">SELECT ONLY ONE</p>
           <fieldset class="">
@@ -16,7 +16,6 @@
             <div class="-space-y-px rounded-md bg-white">
               <!-- Active: "border-[#4DAD9B] ring-2 ring-[#4DAD9B]", Not Active: "border-gray-300" -->
               <label
-                (click)="setActiveOption(option)"
                 [ngClass]="
                   activeOption === option
                     ? 'z-10 border-[#e0fff9] bg-[#e0fff9]'
@@ -25,6 +24,7 @@
                 *ngFor="let option of question.options"
                 class="relative !mb-4 flex cursor-pointer rounded-md border p-4 focus:outline-none">
                 <input
+                  (click)="setActiveOption(option)"
                   type="radio"
                   [name]="question._id"
                   [value]="option"

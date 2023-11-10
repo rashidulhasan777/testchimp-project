@@ -45,14 +45,15 @@ export class NewAssessmentComponent implements OnInit {
       this.allCategories = data;
       // console.log(data);
     });
-    this.questionService.getQuestions().subscribe((data) => {
-      this.allQuestions = data;
+    this.questionService.getQuestions(1, 10).subscribe((response) => {
+      this.allQuestions = response.data;
     });
 
     this.questionForm = this.builder.group({
       assessmentName: this.builder.group({
         title: this.builder.control('', Validators.required),
         jobRole: this.builder.control('', Validators.required),
+        deadline: this.builder.control(''),
       }),
     });
 
@@ -64,6 +65,7 @@ export class NewAssessmentComponent implements OnInit {
             assessmentName: this.builder.group({
               title: this.builder.control(data.title, Validators.required),
               jobRole: this.builder.control(data.jobRole, Validators.required),
+              deadline: this.builder.control(data.deadline),
             }),
           });
           this.selectedCategories = data.categories as Category[];
@@ -85,7 +87,7 @@ export class NewAssessmentComponent implements OnInit {
 
   onSubmit() {
     if (this.questionForm.valid) {
-      const questions: string[] = [];
+      let questions: string[] = [];
       this.selectedQuestions.forEach((question) => {
         questions.push(question._id);
       });
@@ -96,9 +98,14 @@ export class NewAssessmentComponent implements OnInit {
           data.forEach((questionId) => {
             questions.push(questionId);
           });
+          questions = questions.filter(
+            (item, index) => questions.indexOf(item) === index,
+          );
           const assessmentObject: Assessment = {
             title: this.questionForm.value.assessmentName?.title as string,
             jobRole: this.questionForm.value.assessmentName?.jobRole as string,
+            deadline: this.questionForm.value.assessmentName
+              ?.deadline as string,
             questions: questions,
             categories: this.selectedCategories.map((cat) => cat._id as string),
           };

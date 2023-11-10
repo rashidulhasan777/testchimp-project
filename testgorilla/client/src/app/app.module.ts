@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CookieModule } from 'ngx-cookie';
 import { AppRoutingModule } from './app-routing.module';
@@ -33,6 +33,11 @@ import { CategoryPreviewComponent } from './dashboard/category/category-preview/
 import { AssessmentDetailsComponent } from './dashboard/assessment/assessment-details/assessment-details.component';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { TesttakerComponent } from './testtaker/testtaker.component';
+import { WebcamModule } from 'ngx-webcam';
+import { TesttakerCamComponent } from './testtaker/testtaker-cam/testtaker-cam.component';
+import { CandidateComponent } from './candidate/candidate.component';
+import { CandidateTableComponent } from './candidate/candidate-table/candidate-table.component';
+import { CandidateDetailsComponent } from './candidate/candidate-details/candidate-details.component';
 
 @NgModule({
   declarations: [
@@ -60,16 +65,22 @@ import { TesttakerComponent } from './testtaker/testtaker.component';
     CategoryPreviewComponent,
     AssessmentDetailsComponent,
     TesttakerComponent,
+    TesttakerCamComponent,
+    CandidateComponent,
+    CandidateTableComponent,
+    CandidateDetailsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     CookieModule.withOptions(),
     BrowserAnimationsModule,
     MaterialModule,
     HotToastModule.forRoot(),
+    WebcamModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

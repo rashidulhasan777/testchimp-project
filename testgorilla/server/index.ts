@@ -7,9 +7,10 @@ import protectMiddleware from './middlewares/protect.middleware';
 import assessmentRouter from './routers/assessment.router';
 import candidateRouter from './routers/candidate.router';
 import categoryRouter from './routers/category.router';
+import emailRouter from './routers/email.router';
 import questionRouter from './routers/question.router';
 import userRouter from './routers/user.router';
-import emailRouter from './routers/email.router';
+import path from 'path';
 
 config();
 
@@ -17,16 +18,17 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cookieParser());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 app.use(
   cors({
-    origin: ['http://localhost:4200', 'http://localhost:3000'],
+    origin: ['http://localhost:4200', 'http://localhost:3000', '*'],
     credentials: true,
   }),
 );
 
+app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use('/api/category', protectMiddleware, categoryRouter);
 app.use('/api/question', protectMiddleware, questionRouter);
 app.use('/api/assessment', protectMiddleware, assessmentRouter);

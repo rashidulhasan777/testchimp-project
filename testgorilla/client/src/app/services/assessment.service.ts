@@ -20,6 +20,12 @@ export class AssessmentService {
       { withCredentials: true },
     );
   }
+  getAssessmentByCreatedBy(id: string): Observable<Assessment[]> {
+    return this.httpClient.get<Assessment[]>(
+      `${this.baseUrl}/api/assessment/createdby/${id}`,
+      { withCredentials: true },
+    );
+  }
   createAssessment(assessment: Assessment): Observable<Assessment> {
     return this.httpClient.post<Assessment>(
       `${this.baseUrl}/api/assessment`,

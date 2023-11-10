@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import Question from './model';
+import Category from '../category/model';
 
 const createQuestion = async (
   createdBy: string,
@@ -19,6 +20,17 @@ const createQuestion = async (
     level,
     category,
   });
+  await Category.findByIdAndUpdate(
+    {
+      _id: category,
+    },
+    {
+      $inc: {
+        time: duration,
+      },
+    },
+  );
+  // console.log(updatedTest);
   return question;
 };
 
@@ -75,8 +87,10 @@ const deleteQuestionById = async (id: string) => {
   return question;
 };
 
-const getAllQuestions = async () => {
+const getAllQuestions = async (skip: number, limit: number) => {
   // const questions = await Question.find();
+  const total = await Question.countDocuments();
+  if (skip > total) throw new Error('Skip is greater than total');
   const questions = await Question.aggregate([
     {
       $lookup: {
@@ -86,10 +100,22 @@ const getAllQuestions = async () => {
         as: 'category',
       },
     },
+    {
+      $skip: skip,
+    },
+    {
+      $limit: limit,
+    },
   ]);
+  const responseObject = {
+    status: 'success',
+    length: questions.length,
+    total: total,
+    data: questions,
+  };
   // write a query to get data from question with category
   // const questions = await Question.find().populate('category');
-  return questions;
+  return responseObject;
 };
 
 const getQuestionByCategory = async (categoryIds: (string | undefined)[]) => {

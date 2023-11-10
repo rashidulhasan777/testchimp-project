@@ -1,4 +1,4 @@
-<header class="w-[100%] bg-white p-4 shadow-md">
+<!-- <header class="w-[100%] bg-white p-4 shadow-md">
   <nav class="m-auto flex w-[90vw] text-[18px] font-[600] leading-[28px]">
     <div class="basis-[20%]">
       <a routerLink="/">
@@ -36,5 +36,180 @@
         </li>
       </div>
     </ul>
+  </nav>
+</header> -->
+
+<header>
+  <nav class="bg-white shadow-lg">
+    <div class="mx-auto max-w-[90vw] px-2 md:px-6 lg:px-8">
+      <div class="relative flex h-16 justify-between">
+        <div class="absolute inset-y-0 left-0 flex items-center md:hidden">
+          <!-- Mobile menu button -->
+          <button
+            type="button"
+            class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#44aa97]"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            (click)="mobileMenuToggle()">
+            <span class="absolute -inset-0.5"></span>
+            <span class="sr-only">Open main menu</span>
+            <!--
+              Icon when menu is closed.
+
+              Menu open: "hidden", Menu closed: "block"
+            -->
+            <svg
+              [ngClass]="mobileMenuOpen ? 'hidden' : 'block'"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              aria-hidden="true">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            <!--
+              Icon when menu is open.
+
+              Menu open: "block", Menu closed: "hidden"
+            -->
+            <svg
+              [ngClass]="mobileMenuOpen ? 'block' : 'hidden'"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              aria-hidden="true">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div
+          class="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
+          <div class="flex flex-shrink-0 items-center">
+            <img
+              routerLink="/"
+              class="h-8 w-auto hover:cursor-pointer"
+              src="../../assets/logo-testgorilla.svg"
+              alt="Your Company" />
+          </div>
+          <div
+            class="hidden w-full md:ml-6 md:flex md:justify-between md:space-x-8">
+            <div class="hidden md:ml-6 md:flex md:space-x-8">
+              <!-- Current: "border-[#44aa97]  text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
+              <a
+                class="inline-flex items-center px-1 pt-1 text-sm font-medium hover:cursor-pointer hover:text-[#44aa97]">
+                Product Tour
+              </a>
+              <!-- <a class="inline-flex items-center px-1 pt-1 text-sm font-medium">
+                Science
+              </a> -->
+              <a
+                class="inline-flex items-center px-1 pt-1 text-sm font-medium hover:cursor-pointer hover:text-[#44aa97]">
+                Test Library
+              </a>
+              <a
+                class="inline-flex items-center px-1 pt-1 text-sm font-medium hover:cursor-pointer hover:text-[#44aa97]">
+                Pricing
+              </a>
+              <a
+                class="inline-flex items-center px-1 pt-1 text-sm font-medium hover:cursor-pointer hover:text-[#44aa97]">
+                Learn
+              </a>
+            </div>
+            <div
+              [ngClass]="
+                authenticated ? 'hidden' : 'md:ml-6 md:flex md:space-x-8'
+              "
+              class="hidden">
+              <a
+                class="inline-flex items-center px-1 pt-1 text-sm font-medium hover:cursor-pointer hover:text-[#44aa97]"
+                routerLink="/login">
+                Login
+              </a>
+              <a
+                class="inline-flex items-center px-1 pt-1 text-sm font-medium hover:cursor-pointer hover:text-[#44aa97]"
+                routerLink="/signup">
+                Try for free
+              </a>
+            </div>
+            <div
+              [ngClass]="
+                !authenticated ? 'hidden' : 'md:ml-6 md:flex md:space-x-8'
+              "
+              class="hidden">
+              <a
+                class="inline-flex items-center px-1 pt-1 text-sm font-medium hover:cursor-pointer hover:text-[#44aa97]"
+                routerLink="/dashboard">
+                Dashboard
+              </a>
+              <a
+                class="inline-flex items-center px-1 pt-1 text-sm font-medium hover:cursor-pointer hover:text-[#44aa97]"
+                (click)="logout()">
+                Logout
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <div class="hidden md:hidden" id="mobile-menu">
+      <div class="space-y-1 pb-4 pt-2">
+        <!-- Current: "bg-indigo-50 border-[#44aa97]  text-[#31766A] ", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
+        <a
+          class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:bg-indigo-50 hover:text-[#31766A]">
+          Product Tour
+        </a>
+        <a
+          class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:bg-indigo-50 hover:text-[#31766A]">
+          Science
+        </a>
+        <a
+          class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:bg-indigo-50 hover:text-[#31766A]">
+          Test Library
+        </a>
+        <a
+          class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:bg-indigo-50 hover:text-[#31766A]">
+          Pricing
+        </a>
+        <a
+          class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:bg-indigo-50 hover:text-[#31766A]">
+          Learn
+        </a>
+        <a
+          [ngClass]="authenticated ? 'hidden' : ''"
+          class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:bg-indigo-50 hover:text-[#31766A]"
+          routerLink="/login">
+          Login
+        </a>
+        <a
+          [ngClass]="authenticated ? 'hidden' : ''"
+          class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:bg-indigo-50 hover:text-[#31766A]"
+          routerLink="/signup">
+          Try for free
+        </a>
+        <a
+          [ngClass]="!authenticated ? 'hidden' : ''"
+          class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:bg-indigo-50 hover:text-[#31766A]"
+          routerLink="/dashboard">
+          Dashboard
+        </a>
+        <a
+          [ngClass]="!authenticated ? 'hidden' : ''"
+          class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium hover:cursor-pointer hover:bg-indigo-50 hover:text-[#31766A]"
+          (click)="logout()">
+          Logout
+        </a>
+      </div>
+    </div>
   </nav>
 </header>
