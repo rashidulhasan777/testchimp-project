@@ -7,18 +7,18 @@ import { Question } from '../interfaces/question';
   providedIn: 'root',
 })
 export class QuestionService {
-  baseUrl = 'http://localhost:3000';
+  // baseUrl = 'http://localhost:3000';
   constructor(private httpClient: HttpClient) {}
   getQuestions(page: number, limit: number): Observable<any> {
     return this.httpClient.get<any>(
-      `${this.baseUrl}/api/question/?page=${page}&limit=${limit}`,
+      `/api/question/?page=${page}&limit=${limit}`,
       {
         withCredentials: true,
       },
     );
   }
   getQuestionById(id: string): Observable<Question> {
-    return this.httpClient.get<Question>(`${this.baseUrl}/api/question/${id}`, {
+    return this.httpClient.get<Question>(`/api/question/${id}`, {
       withCredentials: true,
     });
   }
@@ -26,23 +26,23 @@ export class QuestionService {
     categoryIds: (string | undefined)[],
   ): Observable<string[]> {
     return this.httpClient.post<string[]>(
-      `${this.baseUrl}/api/question/category`,
+      `/api/question/category`,
       { categoryIds },
       { withCredentials: true },
     );
   }
   createQuestion(question: Question) {
-    return this.httpClient.post(`${this.baseUrl}/api/question`, question, {
+    return this.httpClient.post(`/api/question`, question, {
       withCredentials: true,
     });
   }
   updateQuestionById(id: string, question: Question) {
-    return this.httpClient.put(`${this.baseUrl}/api/question/${id}`, question, {
+    return this.httpClient.put(`/api/question/${id}`, question, {
       withCredentials: true,
     });
   }
   deleteQuestionById(id: string) {
-    return this.httpClient.delete(`${this.baseUrl}/api/question/${id}`, {
+    return this.httpClient.delete(`/api/question/${id}`, {
       withCredentials: true,
     });
   }

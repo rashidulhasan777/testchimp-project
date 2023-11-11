@@ -7,41 +7,47 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CandidateService {
-  baseUrl = 'http://localhost:3000';
+  // baseUrl = 'http://localhost:3000';
   constructor(private httpClient: HttpClient) {}
   createCandidate(candidate: Candidate) {
     return this.httpClient.post<Candidate>(
-      `${this.baseUrl}/api/candidate`,
+      `/api/candidate`,
       candidate,
       { withCredentials: true },
     );
   }
+  createCandidateForTesttaker(candidate: Candidate) {
+    return this.httpClient.post<Candidate>(
+      `/api/testtaker/candidate`,
+      candidate,
+    );
+  }
   getCandidates(): Observable<Candidate[]> {
-    return this.httpClient.get<Candidate[]>(`${this.baseUrl}/api/candidate`, {
+    return this.httpClient.get<Candidate[]>(`/api/candidate`, {
       withCredentials: true,
     });
   }
   getCandidateById(candidateId: string): Observable<Candidate> {
     return this.httpClient.get<Candidate>(
-      `${this.baseUrl}/api/candidate/${candidateId}`,
+      `/api/candidate/${candidateId}`,
       { withCredentials: true },
     );
   }
   getCandidateByAssessment(assessmentId: string): Observable<Candidate[]> {
     return this.httpClient.get<Candidate[]>(
-      `${this.baseUrl}/api/candidate/assessment/${assessmentId}`,
+      `/api/candidate/assessment/${assessmentId}`,
       { withCredentials: true },
     );
   }
   getCandidateByAssignedBy(assignedById: string): Observable<Candidate[]> {
     return this.httpClient.get<Candidate[]>(
-      `${this.baseUrl}/api/candidate/assignedby/${assignedById}`,
+      `/api/candidate/assignedby/${assignedById}`,
       { withCredentials: true },
     );
   }
   deleteCandidateById(candidateId: string) {
     return this.httpClient.delete<Candidate>(
-      `${this.baseUrl}/api/candidate/${candidateId}`,
+      `/api/candidate/${candidateId}`,
       { withCredentials: true },
     );
   }

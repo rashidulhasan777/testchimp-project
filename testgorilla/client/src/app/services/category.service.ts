@@ -8,21 +8,21 @@ import { Question } from '../interfaces/question';
   providedIn: 'root',
 })
 export class CategoryService {
-  baseUrl = 'http://localhost:3000';
+  // baseUrl = 'http://localhost:3000';
   constructor(private httpClient: HttpClient) {}
   getCategories(): Observable<Category[]> {
-    return this.httpClient.get<Category[]>(`${this.baseUrl}/api/category`, {
+    return this.httpClient.get<Category[]>(`/api/category`, {
       withCredentials: true,
     });
   }
   getCategoryById(id: string): Observable<Category> {
-    return this.httpClient.get<Category>(`${this.baseUrl}/api/category/${id}`, {
+    return this.httpClient.get<Category>(`/api/category/${id}`, {
       withCredentials: true,
     });
   }
   getQuestionsByCategoryId(id: string): Observable<Question[]> {
     return this.httpClient.get<Question[]>(
-      `${this.baseUrl}/api/category/${id}/questions`,
+      `/api/category/${id}/questions`,
       {
         withCredentials: true,
       },
@@ -30,7 +30,7 @@ export class CategoryService {
   }
   createCategory(category: Category): Observable<Category> {
     return this.httpClient.post<Category>(
-      `${this.baseUrl}/api/category`,
+      `/api/category`,
       category,
       {
         withCredentials: true,
@@ -39,7 +39,7 @@ export class CategoryService {
   }
   updateCategory(id: string, category: Category): Observable<Category> {
     return this.httpClient.put<Category>(
-      `${this.baseUrl}/api/category/${id}`,
+      `/api/category/${id}`,
       category,
       {
         withCredentials: true,
@@ -48,7 +48,7 @@ export class CategoryService {
   }
   deleteCategory(id: string): Observable<Category> {
     return this.httpClient.delete<Category>(
-      `${this.baseUrl}/api/category/${id}`,
+      `/api/category/${id}`,
       {
         withCredentials: true,
       },

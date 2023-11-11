@@ -93,7 +93,7 @@ export class TesttakerComponent implements OnInit {
       });
     this.assessment = this.activatedRoute.snapshot.params['id'];
     this.assessmentService
-      .getAssessmentById(this.assessment)
+      .getAssessmentByIdForTesttaker(this.assessment)
       .subscribe((data) => {
         // console.log(data);
         const deadline = new Date(data.deadline as string);
@@ -209,7 +209,7 @@ export class TesttakerComponent implements OnInit {
     }
     const score = Number(((correctAnswers / totalQuestions) * 100).toFixed(2));
     this.candidateService
-      .createCandidate({
+      .createCandidateForTesttaker({
         name: this.name,
         email: this.email,
         images: this.images,

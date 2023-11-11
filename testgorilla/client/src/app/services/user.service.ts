@@ -10,7 +10,7 @@ import { CookieService } from 'ngx-cookie';
   providedIn: 'root',
 })
 export class UserService {
-  baseUrl = 'http://localhost:3000';
+  // baseUrl = 'http://localhost:3000';
 
   constructor(
     private http: HttpClient,
@@ -19,20 +19,20 @@ export class UserService {
 
   createUser(signupForm: FormGroup): Observable<{ token: string }> {
     return this.http.post<{ token: string }>(
-      `${this.baseUrl}/users/signup`,
+      `/api/users/signup`,
       signupForm,
       { withCredentials: true },
     );
   }
   loginUser(loginForm: FormGroup): Observable<{ token: string }> {
     return this.http.post<{ token: string }>(
-      `${this.baseUrl}/users/login`,
+      `/api/users/login`,
       loginForm,
       { withCredentials: true },
     );
   }
   getUser(): Observable<User> {
-    return this.http.get<User>(`${this.baseUrl}/users`, {
+    return this.http.get<User>(`/api/users`, {
       withCredentials: true,
     });
   }

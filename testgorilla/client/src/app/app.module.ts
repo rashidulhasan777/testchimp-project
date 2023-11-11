@@ -39,6 +39,8 @@ import { CandidateComponent } from './candidate/candidate.component';
 import { CandidateTableComponent } from './candidate/candidate-table/candidate-table.component';
 import { CandidateDetailsComponent } from './candidate/candidate-details/candidate-details.component';
 
+// import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +84,9 @@ import { CandidateDetailsComponent } from './candidate/candidate-details/candida
     HotToastModule.forRoot(),
     WebcamModule,
   ],
-  providers: [],
+  providers: [
+    // { provide: LocationStrategy, useClass: PathLocationStrategy },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

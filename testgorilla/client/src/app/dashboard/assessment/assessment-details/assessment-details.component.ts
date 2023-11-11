@@ -17,7 +17,7 @@ import { CandidateService } from 'src/app/services/candidate.service';
   styles: [],
 })
 export class AssessmentDetailsComponent implements OnInit {
-  assessmentLink: string = 'http://localhost:4200/testtaker/';
+  assessmentLink: string = 'https://testchimp.me/testtaker/';
   assessment!: Assessment;
   candidates: Candidate[] = [];
   emailForm = new FormGroup({
